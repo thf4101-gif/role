@@ -1,77 +1,86 @@
 /* ==========================================================================
    학급 1인 1역할 배정 도우미 - style.css
-   초등학생 눈높이에 맞춘 따뜻하고 귀여운 파스텔톤 디자인 & A4 인쇄 스타일
+   MARVEL 코믹스 히어로즈 스타일 테마 (초등학생 눈높이 어벤져스 디자인)
    ========================================================================== */
 
 :root {
-  /* 파스텔톤 컬러 팔레트 */
-  --bg-main: #f9fbf9;
-  --bg-gradient: linear-gradient(135deg, #fff7eb 0%, #eefbfb 50%, #f6f0ff 100%);
-  --card-bg: #ffffff;
-  --text-main: #2d3436;
-  --text-muted: #636e72;
-  --text-light: #b2bec3;
+  /* 마블 코믹스 시그니처 컬러 */
+  --marvel-red: #e23636;
+  --marvel-red-dark: #b31414;
+  --marvel-red-glow: rgba(226, 54, 54, 0.45);
 
-  /* 테마 액센트 컬러 */
-  --primary-coral: #ff7675;
-  --primary-hover: #ff5e57;
-  --secondary-mint: #55efc4;
-  --secondary-mint-dark: #00b894;
-  --accent-yellow: #ffeaa7;
-  --accent-yellow-dark: #fdcb6e;
-  --accent-blue: #74b9ff;
-  --accent-blue-dark: #0984e3;
-  --accent-purple: #a29bfe;
-  --accent-purple-dark: #6c5ce7;
+  --hero-gold: #ffcc00;
+  --hero-gold-dark: #d48806;
+  --hero-gold-glow: rgba(255, 204, 0, 0.45);
 
-  /* 카드별 파스텔 12색 테마 */
-  --theme-0: #ffeaa7;
-  --theme-1: #dff9fb;
-  --theme-2: #e8daef;
-  --theme-3: #c7ecee;
-  --theme-4: #fed330;
-  --theme-5: #ffcccc;
-  --theme-6: #d4edda;
-  --theme-7: #fce4ec;
-  --theme-8: #d1ecf1;
-  --theme-9: #e2f0cb;
-  --theme-10: #ffecd2;
-  --theme-11: #f3e5f5;
+  --comic-dark: #0f172a;
+  --comic-dark-secondary: #1e293b;
+  --comic-black: #111111;
+  --comic-white: #ffffff;
+  --comic-gray-bg: #f4f5f7;
+  --comic-border: #111111;
+
+  /* 히어로별 테마 컬러 */
+  --captain-blue: #0984e3;
+  --iron-crimson: #c0392b;
+  --thor-cyan: #00d2d3;
+  --hulk-green: #2ed573;
+  --spider-red: #ff4757;
+  --panther-purple: #5f27cd;
+  --strange-orange: #ff7f50;
+  --groot-wood: #26de81;
 
   /* UI 토큰 */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-full: 9999px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(108, 92, 231, 0.08);
-  --shadow-lg: 0 14px 34px rgba(255, 118, 117, 0.14);
-  --border-soft: #f0ede6;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --comic-shadow: 4px 4px 0px #111111;
+  --comic-shadow-lg: 6px 6px 0px #111111;
+  --comic-shadow-sm: 2px 2px 0px #111111;
 
   /* 폰트 */
-  --font-family: 'Gowun Dodum', 'Gaegu', 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+  --font-display: 'Black Han Sans', 'Bangers', 'Do Hyeon', sans-serif;
+  --font-body: 'Do Hyeon', 'Noto Sans KR', -apple-system, sans-serif;
 }
 
-/* 기본 리셋 및 전역 설정 */
+/* ==========================================================================
+   전역 리셋 및 마블 배경
+   ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: var(--font-family);
-  background: var(--bg-gradient);
+body.marvel-theme {
+  font-family: var(--font-body);
+  background-color: #0b111e;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, #0b111e 0%, #162035 50%, #1e1122 100%);
+  background-size: 20px 20px, 100% 100%;
   background-attachment: fixed;
-  color: var(--text-main);
+  color: #f1f2f6;
   min-height: 100vh;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   position: relative;
   overflow-x: hidden;
 }
 
-/* 화면 상단 컨페티 캔버스 */
+/* 배경 코믹 하프톤 오버레이 */
+.comic-bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 0%, rgba(226, 54, 54, 0.15), transparent 60%);
+  z-index: 0;
+}
+
+/* 캔버스 콘페티 */
 #confetti-canvas {
   position: fixed;
   top: 0;
@@ -82,20 +91,20 @@ body {
   z-index: 9999;
 }
 
-/* 앱 컨테이너 */
 .app-container {
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
-  padding: 24px 20px 48px;
+  padding: 24px 20px 60px;
+  position: relative;
+  z-index: 1;
 }
 
-/* 인쇄용/화면용 토글 유틸리티 */
 .print-only {
   display: none !important;
 }
 
 /* ==========================================================================
-   헤더 섹션
+   마블 상단 헤더
    ========================================================================== */
 .app-header {
   display: flex;
@@ -103,202 +112,270 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
+  color: var(--comic-black);
   padding: 16px 24px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  border: 2px solid #ffffff;
+  border-radius: var(--radius-md);
+  border: 3.5px solid var(--comic-border);
+  box-shadow: var(--comic-shadow-lg);
   margin-bottom: 24px;
+  position: relative;
 }
 
 .header-left {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
-.brand-badge {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--primary-coral);
-  background: #fff0f0;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  width: fit-content;
+/* 마블 시그니처 레드 로고 박스 */
+.marvel-logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--marvel-red);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 2.5px solid var(--comic-black);
+  box-shadow: 3px 3px 0px var(--comic-black);
+  transform: rotate(-2deg);
+  transition: transform 0.2s;
+}
+
+.marvel-logo-box:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.marvel-logo-text {
+  font-family: 'Bangers', 'Black Han Sans', sans-serif;
+  font-size: 2rem;
+  line-height: 0.9;
+  letter-spacing: 1px;
+}
+
+.sub-hero-tag {
+  font-size: 0.65rem;
+  font-weight: 900;
+  background: var(--hero-gold);
+  color: var(--comic-black);
+  padding: 2px 5px;
+  border-radius: 2px;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .main-title {
-  font-size: 1.65rem;
-  font-weight: 800;
-  color: #2c3e50;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: #111111;
   letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comic-bang {
+  font-family: 'Bangers', sans-serif;
+  font-size: 1.35rem;
+  background: var(--hero-gold);
+  color: var(--comic-black);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
+  transform: rotate(4deg);
+  display: inline-block;
+}
+
+.header-subtitle {
+  font-size: 0.9rem;
+  color: #555555;
+  font-weight: 500;
 }
 
 .header-right {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 /* ==========================================================================
-   버튼 공통 스타일
+   코믹북 마블 스타일 버튼들
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-family: inherit;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 700;
   padding: 10px 18px;
-  border-radius: var(--radius-md);
-  border: none;
+  border-radius: var(--radius-sm);
+  border: 2.5px solid var(--comic-black);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.15s ease-out;
   text-decoration: none;
   user-select: none;
+  box-shadow: var(--comic-shadow);
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--comic-black);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #ff7675 0%, #ff5252 100%);
+/* 마블 레드 프라이머리 */
+.btn-marvel-primary {
+  background: var(--marvel-red);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(255, 118, 117, 0.4);
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, #ff8787 0%, #ff4141 100%);
+.btn-marvel-primary:hover {
+  background: #ff4757;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(255, 118, 117, 0.45);
+  box-shadow: 5px 5px 0px var(--comic-black);
 }
 
-.btn-secondary {
-  background: #ffffff;
-  color: #2d3436;
-  border: 1.5px solid #dfe6e9;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-}
-
-.btn-secondary:hover {
-  background: #f8f9fa;
-  border-color: #b2bec3;
-  transform: translateY(-1px);
-}
-
-.btn-outline {
-  background: transparent;
-  color: #4a5568;
-  border: 1.5px solid #cbd5e0;
-}
-
-.btn-outline:hover {
-  background: #f7fafc;
-  border-color: #a0aec0;
-  color: #2d3748;
-}
-
-.btn-outline-danger {
-  background: transparent;
-  color: #e55039;
-  border: 1.5px solid #ffcccc;
-}
-
-.btn-outline-danger:hover {
-  background: #fff5f5;
-  border-color: #e55039;
-}
-
-.btn-accent {
-  background: linear-gradient(135deg, #6c5ce7 0%, #5843e4 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(108, 92, 231, 0.35);
-}
-
-.btn-accent:hover {
-  background: linear-gradient(135deg, #7c6dfa 0%, #4b35e0 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(108, 92, 231, 0.4);
-}
-
-.btn-icon-only {
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  border-radius: var(--radius-md);
-  background: #ffffff;
-  border: 1.5px solid #dfe6e9;
-  font-size: 1.1rem;
-}
-
-.btn-icon-only:hover {
+/* 세컨더리 버튼 */
+.btn-marvel-secondary {
   background: #f1f2f6;
-  transform: rotate(15deg);
+  color: var(--comic-black);
+}
+
+.btn-marvel-secondary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--comic-black);
+}
+
+/* 코믹 아웃라인 */
+.btn-comic-outline {
+  background: #ffffff;
+  color: var(--comic-black);
+}
+
+.btn-comic-outline:hover {
+  background: var(--hero-gold);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--comic-black);
+}
+
+.btn-comic-danger {
+  background: #ffeaa7;
+  color: #d63031;
+}
+
+.btn-comic-danger:hover {
+  background: #ff7675;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--comic-black);
+}
+
+/* 액센트 버튼 (보라/어벤져스 블루) */
+.btn-marvel-accent {
+  background: #0984e3;
+  color: #ffffff;
+}
+
+.btn-marvel-accent:hover {
+  background: #74b9ff;
+  color: var(--comic-black);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--comic-black);
+}
+
+.btn-comic-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: #ffffff;
+  font-size: 1.2rem;
+}
+
+.btn-comic-icon:hover {
+  background: var(--hero-gold);
+  transform: rotate(20deg);
 }
 
 .btn-sm {
-  padding: 6px 12px;
-  font-size: 0.85rem;
-  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 0.88rem;
 }
 
 .btn-xs {
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  border-width: 1.5px;
 }
 
-/* 히어로 배정 버튼 (중앙 주목도) */
-.btn-hero {
-  font-size: 1.35rem;
-  padding: 16px 36px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #ff7675 0%, #ff9f43 100%);
-  box-shadow: 0 8px 24px rgba(255, 118, 117, 0.45);
-  letter-spacing: -0.5px;
+/* 어셈블 대형 출동 버튼 (메인) */
+.btn-hero-action {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  letter-spacing: 0.5px;
+  padding: 16px 42px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #e23636 0%, #ff5252 50%, #f39c12 100%);
+  color: #ffffff;
+  border: 3.5px solid var(--comic-black);
+  box-shadow: 6px 6px 0px var(--comic-black);
+  overflow: hidden;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
+  transform: rotate(-1deg);
 }
 
-.btn-hero:hover {
-  background: linear-gradient(135deg, #ff8787 0%, #ffa959 100%);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(255, 118, 117, 0.55);
+.btn-hero-action:hover {
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b6b 50%, #f1c40f 100%);
+  transform: rotate(0deg) scale(1.03) translateY(-3px);
+  box-shadow: 8px 8px 0px var(--comic-black);
 }
 
 .btn-icon-dice {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   display: inline-block;
-  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.btn-hero:hover .btn-icon-dice {
-  transform: rotate(360deg) scale(1.15);
+.btn-hero-action:hover .btn-icon-dice {
+  transform: rotate(360deg) scale(1.2);
 }
 
 /* ==========================================================================
-   대시보드 컨트롤 패널
+   지휘 통제소 패널 (Dashboard Panel)
    ========================================================================== */
 .dashboard-panel {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: var(--radius-lg);
-  padding: 26px 28px;
-  box-shadow: var(--shadow-md);
-  border: 2px solid #ffffff;
-  margin-bottom: 28px;
+  background: #ffffff;
+  color: var(--comic-black);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  border: 3.5px solid var(--comic-border);
+  box-shadow: var(--comic-shadow-lg);
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 }
 
-.panel-info {
+.panel-header-row {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .status-chips {
@@ -313,60 +390,64 @@ body {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
 .chip-student {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #dff9fb;
+  color: #130f40;
 }
 
 .chip-role {
-  background: #fff8e1;
-  color: #f57f17;
+  background: #fef5d1;
+  color: #b7791f;
 }
 
 .chip-status {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: #e3fcec;
+  color: #1b6338;
 }
 
 .chip-status.warning {
-  background: #ffebee;
-  color: #c62828;
+  background: #ffdede;
+  color: #b31414;
 }
 
 .status-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: #2e7d32;
-  animation: pulse 1.8s infinite;
+  background: #27ae60;
+  border: 1px solid #111;
+  animation: pulse 1.5s infinite;
 }
 
 .chip-status.warning .status-dot {
-  background: #c62828;
+  background: #e74c3c;
 }
 
-@keyframes pulse {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  50% { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(0.9); opacity: 0.7; }
-}
-
-.guide-text {
-  font-size: 0.95rem;
-  color: var(--text-muted);
+.comic-sticker {
+  font-family: 'Bangers', 'Black Han Sans', sans-serif;
+  background: var(--hero-gold);
+  color: var(--comic-black);
+  padding: 4px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 2px solid var(--comic-black);
+  box-shadow: 3px 3px 0px var(--comic-black);
+  transform: rotate(3deg);
 }
 
 .panel-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 10px 0;
+  gap: 18px;
+  padding: 8px 0;
 }
 
 .sub-actions {
@@ -385,7 +466,7 @@ body {
   flex-wrap: wrap;
   gap: 12px;
   padding-top: 14px;
-  border-top: 1px dashed #e2e8f0;
+  border-top: 2.5px dashed #cbd5e1;
 }
 
 .search-box {
@@ -393,32 +474,31 @@ body {
   display: flex;
   align-items: center;
   flex: 1;
-  max-width: 360px;
+  max-width: 380px;
 }
 
 .search-box input {
   width: 100%;
-  padding: 9px 34px 9px 36px;
-  border-radius: var(--radius-full);
-  border: 1.5px solid #e2e8f0;
+  padding: 10px 34px 10px 38px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   background: #f8fafc;
   outline: none;
-  transition: all 0.2s;
 }
 
 .search-box input:focus {
   background: #ffffff;
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.2);
+  border-color: var(--marvel-red);
 }
 
 .search-icon {
   position: absolute;
   left: 12px;
-  font-size: 0.9rem;
-  color: var(--text-light);
+  font-size: 1rem;
+  color: #64748b;
   pointer-events: none;
 }
 
@@ -427,15 +507,19 @@ body {
   right: 12px;
   background: none;
   border: none;
-  color: var(--text-light);
+  color: #94a3b8;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .quick-stats {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e293b;
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid #cbd5e1;
 }
 
 /* ==========================================================================
@@ -443,115 +527,145 @@ body {
    ========================================================================== */
 .empty-state {
   text-align: center;
-  padding: 60px 20px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: var(--radius-lg);
-  border: 2px dashed #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.empty-illustration {
-  font-size: 4rem;
-  margin-bottom: 6px;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.empty-state h3 {
-  font-size: 1.35rem;
-  color: #2d3436;
-}
-
-.empty-state p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* 셔플 중 로딩 효과 */
-.shuffling-state {
-  text-align: center;
-  padding: 60px 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  padding: 64px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--comic-black);
+  border-radius: var(--radius-md);
+  border: 3.5px dashed var(--comic-black);
+  box-shadow: var(--comic-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
 }
 
+.empty-illustration {
+  font-size: 4rem;
+  margin-bottom: 6px;
+  animation: heroBounce 2.5s infinite;
+}
+
+@keyframes heroBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12px) scale(1.05); }
+}
+
+.empty-state h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  color: #475569;
+  font-size: 1rem;
+}
+
+/* 셔플 중 로딩 효과 */
+.shuffling-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  color: var(--comic-black);
+  border-radius: var(--radius-md);
+  border: 3.5px solid var(--comic-black);
+  box-shadow: var(--comic-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.comic-sound-fx {
+  font-family: 'Bangers', sans-serif;
+  font-size: 2.2rem;
+  color: var(--marvel-red);
+  text-shadow: 2px 2px 0px var(--comic-black);
+  display: inline-block;
+  transform: rotate(-8deg);
+  animation: comicPulse 0.4s infinite alternate;
+}
+
+@keyframes comicPulse {
+  0% { transform: scale(0.9) rotate(-8deg); }
+  100% { transform: scale(1.15) rotate(-5deg); }
+}
+
 .spinner-roller {
   display: flex;
-  gap: 12px;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  gap: 14px;
+  font-size: 2.6rem;
+  margin-bottom: 8px;
 }
 
 .roller-item {
   display: inline-block;
-  animation: bounceRoll 0.8s infinite alternate;
+  animation: heroRoll 0.6s infinite alternate;
 }
 
-.roller-item:nth-child(2) { animation-delay: 0.15s; }
-.roller-item:nth-child(3) { animation-delay: 0.3s; }
-.roller-item:nth-child(4) { animation-delay: 0.45s; }
-.roller-item:nth-child(5) { animation-delay: 0.6s; }
-.roller-item:nth-child(6) { animation-delay: 0.75s; }
+.roller-item:nth-child(2) { animation-delay: 0.1s; }
+.roller-item:nth-child(3) { animation-delay: 0.2s; }
+.roller-item:nth-child(4) { animation-delay: 0.3s; }
+.roller-item:nth-child(5) { animation-delay: 0.4s; }
+.roller-item:nth-child(6) { animation-delay: 0.5s; }
 
-@keyframes bounceRoll {
+@keyframes heroRoll {
   0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-24px) rotate(20deg); }
+  100% { transform: translateY(-26px) rotate(25deg); }
 }
 
 /* ==========================================================================
-   역할 배정 결과 카드 그리드 (파스텔 카드 디자인)
+   마블 히어로 트레이딩 카드 그리드
    ========================================================================== */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-  animation: fadeIn 0.4s ease-out;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 22px;
+  animation: fadeIn 0.35s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 개별 카드 */
+/* 개별 마블 카드 */
 .role-card {
   background: #ffffff;
+  color: var(--comic-black);
   border-radius: var(--radius-md);
-  border: 2px solid var(--card-border-color, #f0f0f0);
-  box-shadow: var(--shadow-sm);
-  padding: 18px;
+  border: 3px solid var(--comic-black);
+  box-shadow: var(--comic-shadow);
+  padding: 16px 16px 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   position: relative;
   overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.role-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--hero-card-accent, var(--marvel-red));
 }
 
 .role-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--comic-shadow-lg);
+  border-color: var(--marvel-red);
 }
 
-/* 카드 상단 헤더: 번호 및 학생 이름 */
+/* 카드 상단: 요원 번호 및 이름 */
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1.5px dashed rgba(0, 0, 0, 0.08);
+  border-bottom: 2px solid #e2e8f0;
   padding-bottom: 10px;
 }
 
@@ -567,47 +681,58 @@ body {
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background: var(--card-accent-color, #74b9ff);
+  border-radius: 4px;
+  background: var(--hero-card-accent, var(--comic-black));
   color: #ffffff;
-  font-weight: 800;
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  border: 1.5px solid var(--comic-black);
+  box-shadow: 1px 1px 0px var(--comic-black);
 }
 
 .student-name {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #2d3436;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #111111;
+  letter-spacing: -0.5px;
 }
 
 .role-tag-pill {
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  background: var(--card-bg-light, #f1f2f6);
-  color: #636e72;
+  font-family: 'Bangers', var(--font-display);
+  font-size: 0.8rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--hero-gold);
+  color: var(--comic-black);
+  border: 1.5px solid var(--comic-black);
+  letter-spacing: 0.5px;
 }
 
-/* 카드 본문: 역할 아이콘 & 역할명 */
+/* 카드 본문: 히어로 심볼 & 임무명 */
 .card-body {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 6px 0;
+  padding: 4px 0;
 }
 
 .role-icon-box {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-md);
-  background: var(--card-icon-bg, #fff8e1);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  background: var(--hero-card-bg, #f1f2f6);
+  border: 2.5px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.9rem;
+  font-size: 2.1rem;
   flex-shrink: 0;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s;
+}
+
+.role-card:hover .role-icon-box {
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .role-text-box {
@@ -617,29 +742,28 @@ body {
 }
 
 .role-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #2c3e50;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #111111;
   letter-spacing: -0.3px;
 }
 
 .role-desc {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.4;
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.35;
   word-break: keep-all;
 }
 
-/* 카드 푸터: 실천 체크 & 액션 */
+/* 카드 푸터: 미션 체크 & 액션 */
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
   padding-top: 8px;
-  border-top: 1px solid #f8f9fa;
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  border-top: 1.5px dashed #cbd5e1;
+  font-size: 0.85rem;
 }
 
 .mission-checkbox {
@@ -647,51 +771,58 @@ body {
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  font-weight: 700;
+  color: #1e293b;
   user-select: none;
 }
 
 .mission-checkbox input {
-  accent-color: var(--primary-coral);
-  width: 16px;
-  height: 16px;
+  accent-color: var(--marvel-red);
+  width: 17px;
+  height: 17px;
   cursor: pointer;
 }
 
 .btn-card-action {
-  background: none;
-  border: none;
-  color: var(--text-light);
+  background: #f1f5f9;
+  border: 1.5px solid var(--comic-black);
+  color: var(--comic-black);
   cursor: pointer;
-  font-size: 0.85rem;
-  padding: 3px 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 3px 8px;
   border-radius: 4px;
+  box-shadow: 1px 1px 0px var(--comic-black);
 }
 
 .btn-card-action:hover {
-  background: #f1f2f6;
-  color: var(--text-main);
+  background: var(--hero-gold);
 }
 
 /* ==========================================================================
    푸터 영역
    ========================================================================== */
 .app-footer {
-  margin-top: 48px;
+  margin-top: 50px;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
+.app-footer strong {
+  color: #f1f2f6;
+}
+
 .app-footer .copyright {
-  color: var(--text-light);
-  font-size: 0.78rem;
+  color: #64748b;
+  font-size: 0.8rem;
 }
 
 /* ==========================================================================
-   모달 공통 스타일
+   모달 공통 스타일 (코믹스 팝업)
    ========================================================================== */
 .modal-backdrop {
   position: fixed;
@@ -699,45 +830,42 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(45, 52, 54, 0.45);
+  background: rgba(11, 17, 30, 0.75);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 20px;
-  animation: fadeIn 0.2s ease-out;
+  animation: fadeIn 0.15s ease-out;
 }
 
-.modal-card {
+.comic-modal {
   background: #ffffff;
-  border-radius: var(--radius-lg);
+  color: var(--comic-black);
+  border-radius: var(--radius-md);
+  border: 3.5px solid var(--comic-black);
+  box-shadow: 8px 8px 0px var(--comic-black);
   width: 100%;
   max-width: 580px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  animation: modalPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.modal-card.modal-large {
+.comic-modal.modal-large {
   max-width: 680px;
-}
-
-@keyframes modalPop {
-  from { transform: scale(0.92); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 24px;
-  background: #fcfcfd;
-  border-bottom: 1.5px solid #edf2f7;
+  padding: 16px 22px;
+  background: var(--marvel-red);
+  color: #ffffff;
+  border-bottom: 3px solid var(--comic-black);
 }
 
 .modal-title-group {
@@ -747,58 +875,64 @@ body {
 }
 
 .modal-title-group h2 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #2d3436;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: -0.3px;
 }
 
 .modal-emoji {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 .modal-close {
-  background: none;
-  border: none;
-  font-size: 1.6rem;
+  background: #ffffff;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
+  border-radius: 4px;
+  font-size: 1.3rem;
   line-height: 1;
-  color: var(--text-light);
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close:hover {
-  color: var(--text-main);
+  background: var(--hero-gold);
 }
 
 .modal-tabs {
   display: flex;
   background: #f1f5f9;
-  padding: 6px 12px 0;
-  gap: 6px;
-  border-bottom: 1.5px solid #e2e8f0;
+  padding: 8px 12px 0;
+  gap: 8px;
+  border-bottom: 2.5px solid var(--comic-black);
 }
 
 .tab-btn {
-  background: transparent;
-  border: none;
+  background: #e2e8f0;
+  border: 2px solid var(--comic-black);
+  border-bottom: none;
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #64748b;
-  padding: 10px 18px;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: #475569;
+  padding: 9px 18px;
+  border-radius: 4px 4px 0 0;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
 }
 
 .tab-btn.active {
   background: #ffffff;
-  color: var(--primary-coral);
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.03);
+  color: var(--marvel-red);
+  transform: translateY(2px);
 }
 
 .modal-body {
-  padding: 20px 24px;
+  padding: 20px 22px;
   overflow-y: auto;
   flex: 1;
   display: flex;
@@ -820,27 +954,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background: #fcfcfd;
-  border-top: 1.5px solid #edf2f7;
+  padding: 16px 22px;
+  background: #f8fafc;
+  border-top: 2.5px solid var(--comic-black);
   gap: 12px;
 }
 
 .footer-left-info {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .balance-good {
-  color: #2e7d32;
-  font-weight: 700;
+  color: #16a34a;
+  font-weight: 800;
 }
 
 .balance-bad {
-  color: #c62828;
-  font-weight: 700;
+  color: #dc2626;
+  font-weight: 800;
 }
 
-/* 관리 목록 입력 제어 */
+/* 관리 목록 입력 폼 */
 .list-editor-controls {
   display: flex;
   flex-direction: column;
@@ -854,9 +988,10 @@ body {
 
 .input-inline input {
   flex: 1;
-  padding: 8px 12px;
+  padding: 9px 12px;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   font-family: inherit;
   font-size: 0.95rem;
 }
@@ -870,16 +1005,18 @@ body {
 .input-icon-picker {
   width: 52px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
 }
 
 .input-role-title {
   width: 140px;
-  padding: 8px 12px;
+  padding: 9px 12px;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   font-family: inherit;
   font-size: 0.95rem;
 }
@@ -887,19 +1024,20 @@ body {
 .input-role-desc {
   flex: 1;
   min-width: 180px;
-  padding: 8px 12px;
+  padding: 9px 12px;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   font-family: inherit;
   font-size: 0.95rem;
 }
 
 /* 아이템 목록 컨테이너 */
 .items-list-container {
-  max-height: 280px;
+  max-height: 270px;
   overflow-y: auto;
-  border: 1.5px solid #e2e8f0;
-  border-radius: var(--radius-md);
+  border: 2px solid var(--comic-black);
+  border-radius: var(--radius-sm);
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -913,8 +1051,8 @@ body {
   justify-content: space-between;
   padding: 8px 12px;
   background: #ffffff;
-  border-radius: var(--radius-sm);
-  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  border: 1.5px solid #cbd5e1;
   font-size: 0.95rem;
 }
 
@@ -925,27 +1063,28 @@ body {
 }
 
 .manage-item-badge {
-  font-weight: 800;
-  color: var(--accent-blue-dark);
-  font-size: 0.85rem;
-  width: 22px;
+  font-family: var(--font-display);
+  color: var(--marvel-red);
+  font-size: 1rem;
+  width: 24px;
 }
 
 .btn-remove-item {
-  background: none;
-  border: none;
-  color: #ff7675;
+  background: #fee2e2;
+  border: 1.5px solid var(--comic-black);
+  color: #dc2626;
   cursor: pointer;
   font-size: 1.1rem;
-  padding: 2px 6px;
+  padding: 1px 6px;
   border-radius: 4px;
 }
 
 .btn-remove-item:hover {
-  background: #ffebee;
+  background: #ef4444;
+  color: #ffffff;
 }
 
-/* 양식 폼 그룹 */
+/* 폼 그룹 */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -953,9 +1092,9 @@ body {
 }
 
 .form-group label {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #4a5568;
+  color: #334155;
 }
 
 .form-row {
@@ -971,7 +1110,8 @@ body {
   width: 100%;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   font-family: inherit;
   font-size: 0.95rem;
 }
@@ -980,25 +1120,27 @@ body {
   width: 100%;
   padding: 12px;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   font-family: inherit;
   font-size: 0.95rem;
   resize: vertical;
 }
 
 .helper-text {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #64748b;
 }
 
 /* 스프레드시트 배너 & 코드 박스 */
 .sheet-guide-banner {
-  background: #ebf8ff;
-  border-left: 4px solid #3182ce;
+  background: #fef3c7;
+  border: 2px solid var(--comic-black);
+  box-shadow: 2px 2px 0px var(--comic-black);
   padding: 12px 16px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: #2b6cb0;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  color: #92400e;
 }
 
 .connection-status-box {
@@ -1008,15 +1150,16 @@ body {
   padding: 10px 14px;
   background: #f8fafc;
   border-radius: var(--radius-sm);
-  border: 1px solid #e2e8f0;
-  font-size: 0.85rem;
+  border: 2px solid var(--comic-black);
+  font-size: 0.9rem;
 }
 
 .status-indicator-dot {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: #94a3b8;
+  border: 1px solid #111;
 }
 
 .status-indicator-dot.connected {
@@ -1026,13 +1169,14 @@ body {
 .sheet-code-accordion details {
   background: #f1f5f9;
   border-radius: var(--radius-sm);
+  border: 2px solid var(--comic-black);
   padding: 10px 14px;
 }
 
 .sheet-code-accordion summary {
   cursor: pointer;
-  font-size: 0.9rem;
-  color: #334155;
+  font-size: 0.95rem;
+  color: #1e293b;
   user-select: none;
 }
 
@@ -1042,23 +1186,21 @@ body {
 }
 
 .code-box-wrapper pre {
-  background: #1e293b;
-  color: #f8fafc;
+  background: #0f172a;
+  color: #38bdf8;
   padding: 12px;
   border-radius: var(--radius-sm);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   overflow-x: auto;
   line-height: 1.5;
   max-height: 200px;
+  border: 2px solid var(--comic-black);
 }
 
 .code-box-wrapper button {
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border: none;
 }
 
 .radio-options {
@@ -1070,7 +1212,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
 }
 
@@ -1080,28 +1222,23 @@ body {
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  background: #2d3436;
+  background: var(--marvel-red);
   color: #ffffff;
   padding: 12px 24px;
-  border-radius: var(--radius-full);
-  font-size: 0.95rem;
-  font-weight: 700;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--comic-black);
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 4px 4px 0px var(--comic-black);
   z-index: 10000;
-  animation: toastUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-@keyframes toastUp {
-  from { opacity: 0; transform: translate(-50%, 20px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
-}
-
 /* ==========================================================================
    A4 전용 인쇄 스타일 (@media print)
-   교실 게시판에 깔끔하게 부착할 수 있는 완벽한 1장 최적화 레이아웃
+   교실 게시판용 마블 히어로 작전 배치도 출력
    ========================================================================== */
 @media print {
   @page {
@@ -1109,10 +1246,10 @@ body {
     margin: 8mm 10mm;
   }
 
-  /* 화면 전용 UI 요소 전부 숨김 */
   .no-print,
   .modal-backdrop,
   #confetti-canvas,
+  .comic-bg-overlay,
   .btn,
   .btn-card-action,
   .filter-bar,
@@ -1120,17 +1257,16 @@ body {
     display: none !important;
   }
 
-  /* 인쇄 전용 헤더 및 푸터 노출 */
   .print-only {
     display: block !important;
   }
 
-  body {
+  body.marvel-theme {
     background: #ffffff !important;
-    color: #111111 !important;
-    font-size: 11pt;
+    color: #000000 !important;
     padding: 0 !important;
     margin: 0 !important;
+    font-size: 11pt;
   }
 
   .app-container {
@@ -1139,26 +1275,36 @@ body {
     padding: 0 !important;
   }
 
-  /* 인쇄 헤더: 깔끔하고 정돈된 타이틀 배너 */
   .print-header {
     text-align: center;
-    border-bottom: 2.5px solid #2d3436;
-    padding-bottom: 8px;
+    border-bottom: 3px solid #000000;
+    padding-bottom: 6px;
     margin-bottom: 12px;
   }
 
-  .print-header h1 {
-    font-size: 20pt;
-    font-weight: 800;
-    color: #111111;
+  .print-marvel-badge {
+    display: inline-block;
+    background: #000000 !important;
+    color: #ffffff !important;
+    font-size: 10pt;
+    font-weight: 900;
+    padding: 2px 10px;
+    letter-spacing: 1.5px;
     margin-bottom: 4px;
-    letter-spacing: -0.5px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-header h1 {
+    font-size: 21pt;
+    font-weight: 900;
+    color: #000000;
+    margin-bottom: 4px;
   }
 
   .print-meta-info {
     font-size: 11pt;
     font-weight: 700;
-    color: #444444;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1166,57 +1312,60 @@ body {
   }
 
   .print-divider {
-    color: #aaaaaa;
+    color: #666666;
   }
 
-  /* A4 그리드: 12개 카드가 한 장에 딱 맞게 3열 x 4행으로 정렬 */
+  /* 3열 4행 A4 1장 맞춤 */
   .cards-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 7mm !important;
+    gap: 6mm !important;
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
   .role-card {
-    border: 1.5px solid #333333 !important;
-    border-radius: 6px !important;
+    border: 2px solid #000000 !important;
+    border-radius: 4px !important;
     box-shadow: none !important;
     padding: 8px 10px !important;
     page-break-inside: avoid;
     break-inside: avoid;
     background: #ffffff !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  }
+
+  .role-card::before {
+    display: none !important;
   }
 
   .card-header {
-    border-bottom: 1px solid #777777 !important;
-    padding-bottom: 5px !important;
-    margin-bottom: 6px !important;
+    border-bottom: 1.5px solid #000000 !important;
+    padding-bottom: 4px !important;
+    margin-bottom: 5px !important;
   }
 
   .student-no {
     width: 22px !important;
     height: 22px !important;
     font-size: 9pt !important;
-    background: #2d3436 !important;
+    background: #000000 !important;
     color: #ffffff !important;
     border: 1px solid #000000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .student-name {
-    font-size: 13pt !important;
-    font-weight: 800 !important;
+    font-size: 14pt !important;
+    font-weight: 900 !important;
     color: #000000 !important;
   }
 
   .role-tag-pill {
-    border: 1px solid #777777 !important;
+    border: 1px solid #000000 !important;
     background: #f0f0f0 !important;
-    color: #222222 !important;
+    color: #000000 !important;
     font-size: 8pt !important;
-    padding: 2px 5px !important;
   }
 
   .card-body {
@@ -1228,25 +1377,26 @@ body {
     width: 38px !important;
     height: 38px !important;
     font-size: 1.5rem !important;
-    background: #f7f7f7 !important;
-    border: 1px solid #bbbbbb !important;
+    background: #ffffff !important;
+    border: 1.5px solid #000000 !important;
+    box-shadow: none !important;
   }
 
   .role-title {
     font-size: 11pt !important;
-    font-weight: 800 !important;
+    font-weight: 900 !important;
     color: #000000 !important;
   }
 
   .role-desc {
     font-size: 8.5pt !important;
-    color: #333333 !important;
+    color: #222222 !important;
     line-height: 1.25 !important;
   }
 
   .card-footer {
-    border-top: 1px dashed #aaaaaa !important;
-    padding-top: 5px !important;
+    border-top: 1px dashed #666666 !important;
+    padding-top: 4px !important;
     font-size: 8pt !important;
   }
 
@@ -1260,46 +1410,29 @@ body {
     height: 12px !important;
   }
 
-  /* 테이블 인쇄 모드 (인쇄 설정에서 표 형식 선택 시) */
-  .cards-grid.print-as-table {
-    display: table !important;
-    width: 100% !important;
-    border-collapse: collapse !important;
-  }
-
-  .cards-grid.print-as-table .role-card {
-    display: table-row !important;
-    border: none !important;
-    border-bottom: 1px solid #333333 !important;
-  }
-
-  /* 인쇄 하단 확인란 */
   .print-footer {
     margin-top: 10px;
-    border-top: 2px solid #2d3436;
-    padding-top: 8px;
+    border-top: 2.5px solid #000000;
+    padding-top: 6px;
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
   .print-sign-box {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
     font-size: 9.5pt;
   }
 
   .print-signatures {
     display: flex;
     justify-content: space-between;
-    font-weight: 700;
-    margin-top: 4px;
-    padding: 0 10px;
+    font-weight: 800;
+    margin-top: 6px;
+    padding: 0 8px;
   }
 }
 
 /* ==========================================================================
-   반응형 미디어 쿼리 (화면)
+   반응형 스타일
    ========================================================================== */
 @media (max-width: 768px) {
   .app-header {
@@ -1309,7 +1442,7 @@ body {
   }
 
   .header-left {
-    align-items: center;
+    justify-content: center;
   }
 
   .header-right {
@@ -1320,8 +1453,8 @@ body {
     padding: 20px 16px;
   }
 
-  .btn-hero {
-    font-size: 1.15rem;
+  .btn-hero-action {
+    font-size: 1.2rem;
     padding: 14px 28px;
     width: 100%;
   }
