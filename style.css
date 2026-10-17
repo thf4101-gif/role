@@ -1,50 +1,66 @@
 /* ==========================================================================
    학급 1인 1역할 배정 도우미 - style.css
-   MARVEL 코믹스 히어로즈 스타일 테마 (초등학생 눈높이 어벤져스 디자인)
+   Apple Human Interface Design (Cupertino & macOS Aesthetic)
    ========================================================================== */
 
 :root {
-  /* 마블 코믹스 시그니처 컬러 */
-  --marvel-red: #e23636;
-  --marvel-red-dark: #b31414;
-  --marvel-red-glow: rgba(226, 54, 54, 0.45);
+  /* Apple 시스템 컬러 팔레트 */
+  --apple-bg: #f5f5f7;
+  --apple-surface: #ffffff;
+  --apple-surface-translucent: rgba(255, 255, 255, 0.82);
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #6e6e73;
+  --apple-text-tertiary: #86868b;
+  --apple-border: rgba(0, 0, 0, 0.08);
+  --apple-border-subtle: rgba(0, 0, 0, 0.04);
+  --apple-divider: #e5e5ea;
 
-  --hero-gold: #ffcc00;
-  --hero-gold-dark: #d48806;
-  --hero-gold-glow: rgba(255, 204, 0, 0.45);
+  /* 시스템 틴트 컬러 */
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-blue-active: #0062c4;
+  --apple-blue-tint: rgba(0, 113, 227, 0.09);
+  
+  --apple-green: #34c759;
+  --apple-orange: #ff9500;
+  --apple-red: #ff3b30;
+  --apple-purple: #af52de;
+  --apple-indigo: #5856d6;
+  --apple-teal: #30b0c7;
+  --apple-pink: #ff2d55;
+  --apple-yellow: #ffcc00;
 
-  --comic-dark: #0f172a;
-  --comic-dark-secondary: #1e293b;
-  --comic-black: #111111;
-  --comic-white: #ffffff;
-  --comic-gray-bg: #f4f5f7;
-  --comic-border: #111111;
+  /* 카드별 부드러운 Apple 그라디언트 아이콘 웰 (12종) */
+  --icon-grad-0: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  --icon-grad-1: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  --icon-grad-2: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  --icon-grad-3: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  --icon-grad-4: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+  --icon-grad-5: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  --icon-grad-6: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+  --icon-grad-7: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+  --icon-grad-8: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%);
+  --icon-grad-9: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --icon-grad-10: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 100%);
+  --icon-grad-11: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
 
-  /* 히어로별 테마 컬러 */
-  --captain-blue: #0984e3;
-  --iron-crimson: #c0392b;
-  --thor-cyan: #00d2d3;
-  --hulk-green: #2ed573;
-  --spider-red: #ff4757;
-  --panther-purple: #5f27cd;
-  --strange-orange: #ff7f50;
-  --groot-wood: #26de81;
+  /* UI 지오메트리 & 섀도우 */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+  --radius-full: 980px;
 
-  /* UI 토큰 */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --comic-shadow: 4px 4px 0px #111111;
-  --comic-shadow-lg: 6px 6px 0px #111111;
-  --comic-shadow-sm: 2px 2px 0px #111111;
+  --shadow-ambient: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-sheet: 0 24px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.06);
 
   /* 폰트 */
-  --font-display: 'Black Han Sans', 'Bangers', 'Do Hyeon', sans-serif;
-  --font-body: 'Do Hyeon', 'Noto Sans KR', -apple-system, sans-serif;
+  --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
 }
 
 /* ==========================================================================
-   전역 리셋 및 마블 배경
+   전역 설정 & 캔버스
    ========================================================================== */
 * {
   box-sizing: border-box;
@@ -52,35 +68,32 @@
   padding: 0;
 }
 
-body.marvel-theme {
-  font-family: var(--font-body);
-  background-color: #0b111e;
-  background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
-    linear-gradient(135deg, #0b111e 0%, #162035 50%, #1e1122 100%);
-  background-size: 20px 20px, 100% 100%;
-  background-attachment: fixed;
-  color: #f1f2f6;
+body.apple-theme {
+  font-family: var(--font-system);
+  background-color: var(--apple-bg);
+  color: var(--apple-text-primary);
   min-height: 100vh;
   line-height: 1.5;
+  letter-spacing: -0.015em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
 }
 
-/* 배경 코믹 하프톤 오버레이 */
-.comic-bg-overlay {
+/* 은은한 Apple 앰비언트 글로우 */
+.apple-background-glow {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.04) 0%, rgba(245, 245, 247, 0) 70%);
   pointer-events: none;
-  background: radial-gradient(circle at 50% 0%, rgba(226, 54, 54, 0.15), transparent 60%);
   z-index: 0;
 }
 
-/* 캔버스 콘페티 */
 #confetti-canvas {
   position: fixed;
   top: 0;
@@ -92,9 +105,9 @@ body.marvel-theme {
 }
 
 .app-container {
-  max-width: 1220px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 24px 20px 60px;
+  padding: 24px 20px 80px;
   position: relative;
   z-index: 1;
 }
@@ -104,569 +117,488 @@ body.marvel-theme {
 }
 
 /* ==========================================================================
-   마블 상단 헤더
+   Apple 네비게이션 바 (Frosted Glass Header)
    ========================================================================== */
-.app-header {
+.apple-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  background: #ffffff;
-  color: var(--comic-black);
-  padding: 16px 24px;
-  border-radius: var(--radius-md);
-  border: 3.5px solid var(--comic-border);
-  box-shadow: var(--comic-shadow-lg);
-  margin-bottom: 24px;
-  position: relative;
+  background: var(--apple-surface-translucent);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  padding: 14px 24px;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-ambient);
+  margin-bottom: 28px;
 }
 
-.header-left {
+.nav-left {
   display: flex;
   align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: 14px;
 }
 
-/* 마블 시그니처 레드 로고 박스 */
-.marvel-logo-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--marvel-red);
-  color: #ffffff;
-  padding: 8px 14px;
-  border-radius: 4px;
-  border: 2.5px solid var(--comic-black);
-  box-shadow: 3px 3px 0px var(--comic-black);
-  transform: rotate(-2deg);
-  transition: transform 0.2s;
-}
-
-.marvel-logo-box:hover {
-  transform: rotate(0deg) scale(1.05);
-}
-
-.marvel-logo-text {
-  font-family: 'Bangers', 'Black Han Sans', sans-serif;
-  font-size: 2rem;
-  line-height: 0.9;
-  letter-spacing: 1px;
-}
-
-.sub-hero-tag {
-  font-size: 0.65rem;
-  font-weight: 900;
-  background: var(--hero-gold);
-  color: var(--comic-black);
-  padding: 2px 5px;
-  border-radius: 2px;
-  margin-top: 4px;
-  letter-spacing: 0.5px;
-}
-
-.title-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.main-title {
-  font-family: var(--font-display);
-  font-size: 1.7rem;
-  color: #111111;
-  letter-spacing: -0.5px;
+.apple-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.comic-bang {
-  font-family: 'Bangers', sans-serif;
-  font-size: 1.35rem;
-  background: var(--hero-gold);
-  color: var(--comic-black);
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  transform: rotate(4deg);
-  display: inline-block;
-}
-
-.header-subtitle {
-  font-size: 0.9rem;
-  color: #555555;
+  gap: 6px;
+  color: var(--apple-text-secondary);
+  font-size: 0.88rem;
   font-weight: 500;
 }
 
-.header-right {
+.apple-icon {
+  color: var(--apple-text-primary);
+}
+
+.brand-divider {
+  color: var(--apple-border);
+}
+
+.nav-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.main-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  letter-spacing: -0.025em;
+}
+
+.ios-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--apple-text-secondary);
+}
+
+.nav-right {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* ==========================================================================
-   코믹북 마블 스타일 버튼들
+   Apple 버튼 시스템
    ========================================================================== */
-.btn {
+.apple-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 700;
-  padding: 10px 18px;
-  border-radius: var(--radius-sm);
-  border: 2.5px solid var(--comic-black);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.15s ease-out;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   user-select: none;
-  box-shadow: var(--comic-shadow);
+  outline: none;
 }
 
-.btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px var(--comic-black);
+.apple-btn:active {
+  transform: scale(0.97);
 }
 
-/* 마블 레드 프라이머리 */
-.btn-marvel-primary {
-  background: var(--marvel-red);
+/* 프라이머리 버튼 (Apple Blue) */
+.apple-btn-primary {
+  background: var(--apple-blue);
   color: #ffffff;
 }
 
-.btn-marvel-primary:hover {
-  background: #ff4757;
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-black);
+.apple-btn-primary:hover {
+  background: var(--apple-blue-hover);
+}
+
+.apple-btn-primary:active {
+  background: var(--apple-blue-active);
 }
 
 /* 세컨더리 버튼 */
-.btn-marvel-secondary {
-  background: #f1f2f6;
-  color: var(--comic-black);
+.apple-btn-secondary {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--apple-text-primary);
+  border-color: rgba(0, 0, 0, 0.06);
 }
 
-.btn-marvel-secondary:hover {
-  background: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-black);
+.apple-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.07);
 }
 
-/* 코믹 아웃라인 */
-.btn-comic-outline {
-  background: #ffffff;
-  color: var(--comic-black);
+/* 틴티드 버튼 */
+.apple-btn-tinted {
+  background: var(--apple-blue-tint);
+  color: var(--apple-blue);
 }
 
-.btn-comic-outline:hover {
-  background: var(--hero-gold);
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-black);
+.apple-btn-tinted:hover {
+  background: rgba(0, 113, 227, 0.15);
 }
 
-.btn-comic-danger {
-  background: #ffeaa7;
-  color: #d63031;
+/* 터셔리 버튼 */
+.apple-btn-tertiary {
+  background: transparent;
+  color: var(--apple-text-secondary);
 }
 
-.btn-comic-danger:hover {
-  background: #ff7675;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-black);
+.apple-btn-tertiary:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--apple-text-primary);
 }
 
-/* 액센트 버튼 (보라/어벤져스 블루) */
-.btn-marvel-accent {
-  background: #0984e3;
-  color: #ffffff;
+.apple-btn-destructive-text {
+  background: transparent;
+  color: var(--apple-red);
 }
 
-.btn-marvel-accent:hover {
-  background: #74b9ff;
-  color: var(--comic-black);
-  transform: translateY(-2px);
-  box-shadow: 5px 5px 0px var(--comic-black);
+.apple-btn-destructive-text:hover {
+  background: rgba(255, 59, 48, 0.08);
 }
 
-.btn-comic-icon {
-  width: 44px;
-  height: 44px;
+/* 아이콘 전용 버튼 */
+.apple-btn-icon {
+  width: 36px;
+  height: 36px;
   padding: 0;
-  background: #ffffff;
-  font-size: 1.2rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--apple-text-primary);
+  font-size: 0.95rem;
 }
 
-.btn-comic-icon:hover {
-  background: var(--hero-gold);
-  transform: rotate(20deg);
+.apple-btn-icon:hover {
+  background: rgba(0, 0, 0, 0.08);
 }
 
-.btn-sm {
+.apple-btn-sm {
   padding: 6px 14px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
 }
 
-.btn-xs {
+.apple-btn-xs {
   padding: 4px 10px;
   font-size: 0.78rem;
-  border-width: 1.5px;
 }
 
-/* 어셈블 대형 출동 버튼 (메인) */
-.btn-hero-action {
-  position: relative;
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  letter-spacing: 0.5px;
-  padding: 16px 42px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #e23636 0%, #ff5252 50%, #f39c12 100%);
-  color: #ffffff;
-  border: 3.5px solid var(--comic-black);
-  box-shadow: 6px 6px 0px var(--comic-black);
-  overflow: hidden;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
-  transform: rotate(-1deg);
+/* 메인 대형 배정 버튼 */
+.btn-apple-large {
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 14px 34px;
+  box-shadow: 0 4px 18px rgba(0, 113, 227, 0.28);
 }
 
-.btn-hero-action:hover {
-  background: linear-gradient(135deg, #ff4757 0%, #ff6b6b 50%, #f1c40f 100%);
-  transform: rotate(0deg) scale(1.03) translateY(-3px);
-  box-shadow: 8px 8px 0px var(--comic-black);
+.btn-apple-large:hover {
+  box-shadow: 0 6px 24px rgba(0, 113, 227, 0.35);
+  transform: translateY(-1px);
 }
 
 .btn-icon-dice {
-  font-size: 1.8rem;
+  font-size: 1.35rem;
   display: inline-block;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-hero-action:hover .btn-icon-dice {
-  transform: rotate(360deg) scale(1.2);
+.btn-apple-large:hover .btn-icon-dice {
+  transform: rotate(180deg);
 }
 
 /* ==========================================================================
-   지휘 통제소 패널 (Dashboard Panel)
+   Apple 히어로 컨트롤 패널 (Clean Hero Card)
    ========================================================================== */
-.dashboard-panel {
-  background: #ffffff;
-  color: var(--comic-black);
-  border-radius: var(--radius-md);
-  padding: 24px 28px;
-  border: 3.5px solid var(--comic-border);
-  box-shadow: var(--comic-shadow-lg);
-  margin-bottom: 30px;
+.apple-hero-card {
+  background: var(--apple-surface);
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  border: 1px solid var(--apple-border);
+  box-shadow: var(--shadow-ambient);
+  margin-bottom: 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  position: relative;
+  gap: 24px;
 }
 
-.panel-header-row {
+.hero-top-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
 }
 
-.status-chips {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.chip {
+.segmented-status {
   display: inline-flex;
   align-items: center;
+  background: var(--apple-bg);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  gap: 12px;
+  font-size: 0.88rem;
+}
+
+.status-segment {
+  display: flex;
+  align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  font-size: 0.95rem;
-  font-weight: 700;
 }
 
-.chip-student {
-  background: #dff9fb;
-  color: #130f40;
+.segment-label {
+  color: var(--apple-text-tertiary);
+  font-size: 0.82rem;
 }
 
-.chip-role {
-  background: #fef5d1;
-  color: #b7791f;
+.segment-value {
+  color: var(--apple-text-primary);
+  font-weight: 600;
 }
 
-.chip-status {
-  background: #e3fcec;
-  color: #1b6338;
+.status-divider {
+  width: 1px;
+  height: 12px;
+  background: var(--apple-divider);
 }
 
-.chip-status.warning {
-  background: #ffdede;
-  color: #b31414;
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--apple-green);
+  font-weight: 500;
 }
 
-.status-dot {
-  width: 9px;
-  height: 9px;
+.status-indicator.warning {
+  color: var(--apple-orange);
+}
+
+.apple-dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #27ae60;
-  border: 1px solid #111;
-  animation: pulse 1.5s infinite;
+  background: var(--apple-green);
 }
 
-.chip-status.warning .status-dot {
-  background: #e74c3c;
+.status-indicator.warning .apple-dot {
+  background: var(--apple-orange);
 }
 
-.comic-sticker {
-  font-family: 'Bangers', 'Black Han Sans', sans-serif;
-  background: var(--hero-gold);
-  color: var(--comic-black);
-  padding: 4px 10px;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 2px solid var(--comic-black);
-  box-shadow: 3px 3px 0px var(--comic-black);
-  transform: rotate(3deg);
+.hero-subtext {
+  font-size: 0.9rem;
+  color: var(--apple-text-tertiary);
 }
 
-.panel-actions {
+/* 히어로 중앙 버튼 및 액션 */
+.hero-action-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   padding: 8px 0;
 }
 
-.sub-actions {
+.hero-sub-actions {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-/* 필터 & 검색 바 */
-.filter-bar {
+/* 검색창 (Apple Spotlight Style) */
+.apple-search-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 14px;
-  border-top: 2.5px dashed #cbd5e1;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid var(--apple-border-subtle);
 }
 
-.search-box {
+.apple-search-field {
   position: relative;
   display: flex;
   align-items: center;
   flex: 1;
-  max-width: 380px;
+  max-width: 360px;
 }
 
-.search-box input {
+.apple-search-field input {
   width: 100%;
-  padding: 10px 34px 10px 38px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
+  padding: 8px 32px 8px 34px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: var(--apple-bg);
   font-family: inherit;
-  font-size: 0.95rem;
-  background: #f8fafc;
+  font-size: 0.9rem;
+  color: var(--apple-text-primary);
   outline: none;
+  transition: all 0.2s;
 }
 
-.search-box input:focus {
+.apple-search-field input:focus {
   background: #ffffff;
-  border-color: var(--marvel-red);
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
 }
 
-.search-icon {
+.search-symbol {
   position: absolute;
   left: 12px;
-  font-size: 1rem;
-  color: #64748b;
+  font-size: 0.85rem;
+  color: var(--apple-text-tertiary);
   pointer-events: none;
 }
 
-.btn-clear-text {
+.btn-clear-symbol {
   position: absolute;
-  right: 12px;
+  right: 10px;
   background: none;
   border: none;
-  color: #94a3b8;
+  color: var(--apple-text-tertiary);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-.quick-stats {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #1e293b;
-  background: #f1f5f9;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+.apple-counter {
+  font-size: 0.85rem;
+  color: var(--apple-text-secondary);
+  font-weight: 500;
 }
 
 /* ==========================================================================
-   상태 화면 (빈 화면 & 셔플 애니메이션)
+   상태 화면 (Empty & Loading)
    ========================================================================== */
-.empty-state {
+.apple-empty-state {
   text-align: center;
-  padding: 64px 20px;
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--comic-black);
-  border-radius: var(--radius-md);
-  border: 3.5px dashed var(--comic-black);
-  box-shadow: var(--comic-shadow);
+  padding: 64px 24px;
+  background: var(--apple-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--apple-border);
+  box-shadow: var(--shadow-ambient);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
-.empty-illustration {
-  font-size: 4rem;
+.empty-icon-well {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--apple-blue-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 6px;
-  animation: heroBounce 2.5s infinite;
 }
 
-@keyframes heroBounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-12px) scale(1.05); }
+.empty-symbol {
+  font-size: 1.8rem;
+  color: var(--apple-blue);
 }
 
-.empty-state h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+.apple-empty-state h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--apple-text-primary);
 }
 
-.empty-state p {
-  color: #475569;
-  font-size: 1rem;
+.apple-empty-state p {
+  color: var(--apple-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-/* 셔플 중 로딩 효과 */
-.shuffling-state {
+/* 로딩 인디케이터 (Apple Spinner Ring) */
+.apple-loading-state {
   text-align: center;
-  padding: 60px 20px;
-  background: #ffffff;
-  color: var(--comic-black);
-  border-radius: var(--radius-md);
-  border: 3.5px solid var(--comic-black);
-  box-shadow: var(--comic-shadow-lg);
+  padding: 64px 24px;
+  background: var(--apple-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--apple-border);
+  box-shadow: var(--shadow-ambient);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
 }
 
-.comic-sound-fx {
-  font-family: 'Bangers', sans-serif;
-  font-size: 2.2rem;
-  color: var(--marvel-red);
-  text-shadow: 2px 2px 0px var(--comic-black);
-  display: inline-block;
-  transform: rotate(-8deg);
-  animation: comicPulse 0.4s infinite alternate;
+.apple-spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(0, 113, 227, 0.15);
+  border-top-color: var(--apple-blue);
+  border-radius: 50%;
+  animation: appleSpin 0.75s linear infinite;
+  margin-bottom: 6px;
 }
 
-@keyframes comicPulse {
-  0% { transform: scale(0.9) rotate(-8deg); }
-  100% { transform: scale(1.15) rotate(-5deg); }
+@keyframes appleSpin {
+  to { transform: rotate(360deg); }
 }
 
-.spinner-roller {
-  display: flex;
-  gap: 14px;
-  font-size: 2.6rem;
-  margin-bottom: 8px;
+.apple-loading-state h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
-.roller-item {
-  display: inline-block;
-  animation: heroRoll 0.6s infinite alternate;
-}
-
-.roller-item:nth-child(2) { animation-delay: 0.1s; }
-.roller-item:nth-child(3) { animation-delay: 0.2s; }
-.roller-item:nth-child(4) { animation-delay: 0.3s; }
-.roller-item:nth-child(5) { animation-delay: 0.4s; }
-.roller-item:nth-child(6) { animation-delay: 0.5s; }
-
-@keyframes heroRoll {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-26px) rotate(25deg); }
+.apple-loading-state p {
+  color: var(--apple-text-secondary);
+  font-size: 0.92rem;
 }
 
 /* ==========================================================================
-   마블 히어로 트레이딩 카드 그리드
+   Apple 카드 그리드 (SF Cards)
    ========================================================================== */
-.cards-grid {
+.apple-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 22px;
-  animation: fadeIn 0.35s ease-out;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  animation: appleFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(14px); }
+@keyframes appleFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 개별 마블 카드 */
+/* 개별 카드 */
 .role-card {
-  background: #ffffff;
-  color: var(--comic-black);
-  border-radius: var(--radius-md);
-  border: 3px solid var(--comic-black);
-  box-shadow: var(--comic-shadow);
-  padding: 16px 16px 14px;
+  background: var(--apple-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--apple-border);
+  box-shadow: var(--shadow-ambient);
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   position: relative;
-  overflow: hidden;
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.role-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: var(--hero-card-accent, var(--marvel-red));
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .role-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: var(--comic-shadow-lg);
-  border-color: var(--marvel-red);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
-/* 카드 상단: 요원 번호 및 이름 */
+/* 카드 헤더: 학생 번호 & 이름 */
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 10px;
 }
 
 .student-badge {
@@ -679,91 +611,80 @@ body.marvel-theme {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  background: var(--hero-card-accent, var(--comic-black));
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  border: 1.5px solid var(--comic-black);
-  box-shadow: 1px 1px 0px var(--comic-black);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--apple-bg);
+  color: var(--apple-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .student-name {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  color: #111111;
-  letter-spacing: -0.5px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  letter-spacing: -0.02em;
 }
 
 .role-tag-pill {
-  font-family: 'Bangers', var(--font-display);
-  font-size: 0.8rem;
-  padding: 2px 7px;
-  border-radius: 3px;
-  background: var(--hero-gold);
-  color: var(--comic-black);
-  border: 1.5px solid var(--comic-black);
-  letter-spacing: 0.5px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--apple-bg);
+  color: var(--apple-text-tertiary);
 }
 
-/* 카드 본문: 히어로 심볼 & 임무명 */
+/* 카드 본문: iOS 앱 아이콘 스타일 웰 & 역할 정보 */
 .card-body {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 4px 0;
 }
 
 .role-icon-box {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-sm);
-  background: var(--hero-card-bg, #f1f2f6);
-  border: 2.5px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--card-icon-gradient, var(--icon-grad-0));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.1rem;
+  font-size: 1.85rem;
   flex-shrink: 0;
-  transition: transform 0.2s;
-}
-
-.role-card:hover .role-icon-box {
-  transform: scale(1.1) rotate(-5deg);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .role-text-box {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .role-title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: #111111;
-  letter-spacing: -0.3px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  letter-spacing: -0.015em;
 }
 
 .role-desc {
-  font-size: 0.88rem;
-  color: #475569;
-  line-height: 1.35;
+  font-size: 0.82rem;
+  color: var(--apple-text-secondary);
+  line-height: 1.4;
   word-break: keep-all;
 }
 
-/* 카드 푸터: 미션 체크 & 액션 */
+/* 카드 푸터: 실천 토글 & 스왑 버튼 */
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
-  padding-top: 8px;
-  border-top: 1.5px dashed #cbd5e1;
-  font-size: 0.85rem;
+  padding-top: 10px;
+  border-top: 1px solid var(--apple-border-subtle);
+  font-size: 0.82rem;
 }
 
 .mission-checkbox {
@@ -771,58 +692,55 @@ body.marvel-theme {
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  font-weight: 700;
-  color: #1e293b;
+  color: var(--apple-text-secondary);
+  font-weight: 500;
   user-select: none;
 }
 
 .mission-checkbox input {
-  accent-color: var(--marvel-red);
-  width: 17px;
-  height: 17px;
+  accent-color: var(--apple-blue);
+  width: 16px;
+  height: 16px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .btn-card-action {
-  background: #f1f5f9;
-  border: 1.5px solid var(--comic-black);
-  color: var(--comic-black);
+  background: transparent;
+  border: none;
+  color: var(--apple-blue);
   cursor: pointer;
   font-size: 0.82rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
-  box-shadow: 1px 1px 0px var(--comic-black);
+  font-weight: 500;
+  padding: 3px 6px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
 }
 
 .btn-card-action:hover {
-  background: var(--hero-gold);
+  background: var(--apple-blue-tint);
 }
 
 /* ==========================================================================
    푸터 영역
    ========================================================================== */
-.app-footer {
-  margin-top: 50px;
+.apple-footer {
+  margin-top: 56px;
   text-align: center;
-  color: #94a3b8;
-  font-size: 0.9rem;
+  color: var(--apple-text-tertiary);
+  font-size: 0.85rem;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.app-footer strong {
-  color: #f1f2f6;
-}
-
-.app-footer .copyright {
-  color: #64748b;
-  font-size: 0.8rem;
+.apple-footer .copyright {
+  font-size: 0.78rem;
+  color: #a1a1a6;
 }
 
 /* ==========================================================================
-   모달 공통 스타일 (코믹스 팝업)
+   Apple Sheet 모달 (iOS Modal Presentation)
    ========================================================================== */
 .modal-backdrop {
   position: fixed;
@@ -830,109 +748,121 @@ body.marvel-theme {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(11, 17, 30, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 20px;
-  animation: fadeIn 0.15s ease-out;
+  animation: appleFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.comic-modal {
-  background: #ffffff;
-  color: var(--comic-black);
-  border-radius: var(--radius-md);
-  border: 3.5px solid var(--comic-black);
-  box-shadow: 8px 8px 0px var(--comic-black);
+.modal-sheet {
+  background: var(--apple-surface);
+  border-radius: var(--radius-xl);
   width: 100%;
-  max-width: 580px;
+  max-width: 560px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sheet);
   overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  animation: appleSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.comic-modal.modal-large {
-  max-width: 680px;
+.modal-sheet.sheet-large {
+  max-width: 660px;
+}
+
+@keyframes appleSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.sheet-drag-handle {
+  width: 36px;
+  height: 5px;
+  background: var(--apple-divider);
+  border-radius: var(--radius-full);
+  margin: 10px auto 0;
 }
 
 .modal-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 16px 22px;
-  background: var(--marvel-red);
-  color: #ffffff;
-  border-bottom: 3px solid var(--comic-black);
-}
-
-.modal-title-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  padding: 16px 24px;
 }
 
 .modal-title-group h2 {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  letter-spacing: -0.3px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  letter-spacing: -0.02em;
 }
 
-.modal-emoji {
-  font-size: 1.5rem;
+.modal-subtitle {
+  font-size: 0.85rem;
+  color: var(--apple-text-secondary);
+  margin-top: 2px;
 }
 
-.modal-close {
-  background: #ffffff;
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  border-radius: 4px;
-  font-size: 1.3rem;
-  line-height: 1;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
+.sheet-close-btn {
+  background: var(--apple-bg);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.modal-close:hover {
-  background: var(--hero-gold);
-}
-
-.modal-tabs {
-  display: flex;
-  background: #f1f5f9;
-  padding: 8px 12px 0;
-  gap: 8px;
-  border-bottom: 2.5px solid var(--comic-black);
-}
-
-.tab-btn {
-  background: #e2e8f0;
-  border: 2px solid var(--comic-black);
-  border-bottom: none;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #475569;
-  padding: 9px 18px;
-  border-radius: 4px 4px 0 0;
+  color: var(--apple-text-tertiary);
   cursor: pointer;
-  transition: all 0.15s;
+  font-size: 0.85rem;
 }
 
-.tab-btn.active {
+.sheet-close-btn:hover {
+  background: var(--apple-divider);
+  color: var(--apple-text-primary);
+}
+
+/* 세그먼트 컨트롤 탭 */
+.ios-segmented-control {
+  display: flex;
+  background: var(--apple-bg);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  margin: 0 24px 12px;
+  gap: 2px;
+}
+
+.segment-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--apple-text-secondary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.segment-tab.active {
   background: #ffffff;
-  color: var(--marvel-red);
-  transform: translateY(2px);
+  color: var(--apple-text-primary);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .modal-body {
-  padding: 20px 22px;
+  padding: 12px 24px 20px;
   overflow-y: auto;
   flex: 1;
   display: flex;
@@ -943,7 +873,7 @@ body.marvel-theme {
 .tab-content {
   display: none;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .tab-content.active {
@@ -954,106 +884,113 @@ body.marvel-theme {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 22px;
-  background: #f8fafc;
-  border-top: 2.5px solid var(--comic-black);
+  padding: 14px 24px;
+  background: var(--apple-bg);
+  border-top: 1px solid var(--apple-border-subtle);
   gap: 12px;
 }
 
-.footer-left-info {
-  font-size: 0.9rem;
-}
-
 .balance-good {
-  color: #16a34a;
-  font-weight: 800;
+  color: var(--apple-green);
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .balance-bad {
-  color: #dc2626;
-  font-weight: 800;
+  color: var(--apple-orange);
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-/* 관리 목록 입력 폼 */
-.list-editor-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* 폼 인풋 스타일 */
+.apple-input {
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--apple-divider);
+  background: var(--apple-bg);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--apple-text-primary);
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-.input-inline {
+.apple-input:focus {
+  background: #ffffff;
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12);
+}
+
+.input-full {
+  width: 100%;
+}
+
+.apple-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--apple-divider);
+  background: var(--apple-bg);
+  font-family: inherit;
+  font-size: 0.92rem;
+  outline: none;
+  resize: vertical;
+}
+
+.sheet-input-row {
   display: flex;
   gap: 8px;
 }
 
-.input-inline input {
+.sheet-input-row input {
   flex: 1;
-  padding: 9px 12px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  font-family: inherit;
-  font-size: 0.95rem;
 }
 
-.role-inputs-row {
+.sheet-role-inputs {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.input-icon-picker {
-  width: 52px;
+.input-icon-box {
+  width: 48px;
   text-align: center;
-  font-size: 1.25rem;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
+  font-size: 1.15rem;
 }
 
-.input-role-title {
-  width: 140px;
-  padding: 9px 12px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  font-family: inherit;
-  font-size: 0.95rem;
+.input-role-name {
+  width: 130px;
 }
 
 .input-role-desc {
   flex: 1;
-  min-width: 180px;
-  padding: 9px 12px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  font-family: inherit;
-  font-size: 0.95rem;
+  min-width: 170px;
 }
 
-/* 아이템 목록 컨테이너 */
-.items-list-container {
+.btn-full-sub {
+  width: 100%;
+}
+
+/* 리스트 그룹 (iOS Table View) */
+.apple-list-group {
   max-height: 270px;
   overflow-y: auto;
-  border: 2px solid var(--comic-black);
-  border-radius: var(--radius-sm);
-  padding: 8px;
+  border-radius: var(--radius-md);
+  background: var(--apple-bg);
+  padding: 4px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background: #f8fafc;
+  gap: 4px;
 }
 
 .manage-item-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 9px 12px;
   background: #ffffff;
-  border-radius: 4px;
-  border: 1.5px solid #cbd5e1;
-  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
 }
 
 .manage-item-left {
@@ -1063,197 +1000,164 @@ body.marvel-theme {
 }
 
 .manage-item-badge {
-  font-family: var(--font-display);
-  color: var(--marvel-red);
-  font-size: 1rem;
-  width: 24px;
+  color: var(--apple-text-tertiary);
+  font-size: 0.8rem;
+  width: 20px;
 }
 
 .btn-remove-item {
-  background: #fee2e2;
-  border: 1.5px solid var(--comic-black);
-  color: #dc2626;
+  background: transparent;
+  border: none;
+  color: var(--apple-text-tertiary);
   cursor: pointer;
   font-size: 1.1rem;
-  padding: 1px 6px;
+  padding: 2px 6px;
   border-radius: 4px;
 }
 
 .btn-remove-item:hover {
-  background: #ef4444;
-  color: #ffffff;
+  color: var(--apple-red);
 }
 
-/* 폼 그룹 */
-.form-group {
+.apple-form-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.form-group label {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #334155;
+.apple-form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--apple-text-secondary);
 }
 
-.form-row {
+.form-row-2 {
   display: flex;
   gap: 12px;
 }
 
-.form-group.half {
+.form-row-2 > div {
   flex: 1;
 }
 
-.input-text-full {
-  width: 100%;
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-.textarea-full {
-  width: 100%;
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  font-family: inherit;
-  font-size: 0.95rem;
-  resize: vertical;
-}
-
-.helper-text {
+.apple-callout-box {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--apple-blue-tint);
+  border-radius: var(--radius-md);
   font-size: 0.85rem;
-  color: #64748b;
+  color: #005bb5;
 }
 
-/* 스프레드시트 배너 & 코드 박스 */
-.sheet-guide-banner {
-  background: #fef3c7;
-  border: 2px solid var(--comic-black);
-  box-shadow: 2px 2px 0px var(--comic-black);
-  padding: 12px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 0.92rem;
-  color: #92400e;
+.callout-icon {
+  font-size: 1.1rem;
 }
 
-.connection-status-box {
+.apple-status-pill-box {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
-  background: #f8fafc;
+  padding: 8px 12px;
+  background: var(--apple-bg);
   border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--apple-text-secondary);
 }
 
-.status-indicator-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #94a3b8;
-  border: 1px solid #111;
-}
-
-.status-indicator-dot.connected {
-  background: #10b981;
-}
-
-.sheet-code-accordion details {
-  background: #f1f5f9;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--comic-black);
+.apple-accordion details {
+  background: var(--apple-bg);
+  border-radius: var(--radius-md);
   padding: 10px 14px;
 }
 
-.sheet-code-accordion summary {
+.apple-accordion summary {
   cursor: pointer;
-  font-size: 0.95rem;
-  color: #1e293b;
-  user-select: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--apple-text-secondary);
 }
 
-.code-box-wrapper {
+.code-wrapper {
   margin-top: 10px;
   position: relative;
 }
 
-.code-box-wrapper pre {
-  background: #0f172a;
-  color: #38bdf8;
+.code-wrapper pre {
+  background: #1e1e24;
+  color: #f1f2f6;
   padding: 12px;
   border-radius: var(--radius-sm);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   overflow-x: auto;
-  line-height: 1.5;
-  max-height: 200px;
-  border: 2px solid var(--comic-black);
+  max-height: 180px;
 }
 
-.code-box-wrapper button {
+.code-wrapper button {
   position: absolute;
   top: 8px;
   right: 8px;
 }
 
-.radio-options {
+.apple-segmented-pick {
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 
-.radio-label {
+.pick-label {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   cursor: pointer;
 }
 
-/* 토스트 메시지 */
-.toast-message {
+/* Apple Dynamic Island 토스트 */
+.apple-toast {
   position: fixed;
-  bottom: 28px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--marvel-red);
+  background: rgba(29, 29, 31, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #ffffff;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  border: 3px solid var(--comic-black);
-  font-size: 1rem;
-  font-weight: 800;
-  box-shadow: 4px 4px 0px var(--comic-black);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   z-index: 10000;
   display: flex;
   align-items: center;
   gap: 8px;
+  animation: toastPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastPop {
+  from { opacity: 0; transform: translate(-50%, 14px) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
 }
 
 /* ==========================================================================
    A4 전용 인쇄 스타일 (@media print)
-   교실 게시판용 마블 히어로 작전 배치도 출력
+   스위스 / Apple 스타일의 극도로 단정하고 세련된 게시판 안내표
    ========================================================================== */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 8mm 10mm;
+    margin: 10mm 12mm;
   }
 
   .no-print,
   .modal-backdrop,
   #confetti-canvas,
-  .comic-bg-overlay,
+  .apple-background-glow,
   .btn,
+  .apple-btn,
   .btn-card-action,
-  .filter-bar,
-  .sub-actions {
+  .apple-search-section,
+  .hero-sub-actions {
     display: none !important;
   }
 
@@ -1261,12 +1165,12 @@ body.marvel-theme {
     display: block !important;
   }
 
-  body.marvel-theme {
+  body.apple-theme {
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #1d1d1f !important;
     padding: 0 !important;
     margin: 0 !important;
-    font-size: 11pt;
+    font-size: 10.5pt;
   }
 
   .app-container {
@@ -1277,34 +1181,31 @@ body.marvel-theme {
 
   .print-header {
     text-align: center;
-    border-bottom: 3px solid #000000;
-    padding-bottom: 6px;
-    margin-bottom: 12px;
+    border-bottom: 1.5px solid #1d1d1f;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
   }
 
-  .print-marvel-badge {
-    display: inline-block;
-    background: #000000 !important;
-    color: #ffffff !important;
-    font-size: 10pt;
-    font-weight: 900;
-    padding: 2px 10px;
+  .print-apple-badge {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #86868b;
     letter-spacing: 1.5px;
-    margin-bottom: 4px;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    margin-bottom: 3px;
   }
 
   .print-header h1 {
-    font-size: 21pt;
-    font-weight: 900;
-    color: #000000;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.03em;
     margin-bottom: 4px;
   }
 
   .print-meta-info {
-    font-size: 11pt;
-    font-weight: 700;
+    font-size: 10pt;
+    font-weight: 500;
+    color: #515154;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1312,11 +1213,11 @@ body.marvel-theme {
   }
 
   .print-divider {
-    color: #666666;
+    color: #d2d2d7;
   }
 
-  /* 3열 4행 A4 1장 맞춤 */
-  .cards-grid {
+  /* 3열 4행 A4 1페이지 최적화 */
+  .apple-cards-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 6mm !important;
@@ -1325,78 +1226,75 @@ body.marvel-theme {
   }
 
   .role-card {
-    border: 2px solid #000000 !important;
-    border-radius: 4px !important;
+    border: 1px solid #d2d2d7 !important;
+    border-radius: 8px !important;
     box-shadow: none !important;
-    padding: 8px 10px !important;
+    padding: 10px 12px !important;
     page-break-inside: avoid;
     break-inside: avoid;
     background: #ffffff !important;
   }
 
-  .role-card::before {
-    display: none !important;
-  }
-
   .card-header {
-    border-bottom: 1.5px solid #000000 !important;
-    padding-bottom: 4px !important;
-    margin-bottom: 5px !important;
+    border-bottom: 1px solid #e5e5ea !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 6px !important;
   }
 
   .student-no {
-    width: 22px !important;
-    height: 22px !important;
-    font-size: 9pt !important;
-    background: #000000 !important;
-    color: #ffffff !important;
-    border: 1px solid #000000 !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 8.5pt !important;
+    background: #f5f5f7 !important;
+    color: #1d1d1f !important;
+    border: 1px solid #d2d2d7 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
   .student-name {
-    font-size: 14pt !important;
-    font-weight: 900 !important;
-    color: #000000 !important;
+    font-size: 13pt !important;
+    font-weight: 700 !important;
+    color: #1d1d1f !important;
   }
 
   .role-tag-pill {
-    border: 1px solid #000000 !important;
-    background: #f0f0f0 !important;
-    color: #000000 !important;
-    font-size: 8pt !important;
+    border: 1px solid #e5e5ea !important;
+    background: #f5f5f7 !important;
+    color: #6e6e73 !important;
+    font-size: 7.5pt !important;
   }
 
   .card-body {
-    gap: 8px !important;
-    padding: 2px 0 !important;
+    gap: 10px !important;
+    padding: 3px 0 !important;
   }
 
   .role-icon-box {
     width: 38px !important;
     height: 38px !important;
-    font-size: 1.5rem !important;
-    background: #ffffff !important;
-    border: 1.5px solid #000000 !important;
+    font-size: 1.45rem !important;
+    background: #f5f5f7 !important;
+    border-radius: 8px !important;
     box-shadow: none !important;
+    border: 1px solid #e5e5ea !important;
   }
 
   .role-title {
     font-size: 11pt !important;
-    font-weight: 900 !important;
-    color: #000000 !important;
+    font-weight: 700 !important;
+    color: #1d1d1f !important;
   }
 
   .role-desc {
-    font-size: 8.5pt !important;
-    color: #222222 !important;
+    font-size: 8pt !important;
+    color: #6e6e73 !important;
     line-height: 1.25 !important;
   }
 
   .card-footer {
-    border-top: 1px dashed #666666 !important;
-    padding-top: 4px !important;
+    border-top: 1px solid #f5f5f7 !important;
+    padding-top: 5px !important;
     font-size: 8pt !important;
   }
 
@@ -1405,70 +1303,70 @@ body.marvel-theme {
   }
 
   .mission-checkbox input {
-    border: 1px solid #000000 !important;
+    border: 1px solid #86868b !important;
     width: 12px !important;
     height: 12px !important;
   }
 
   .print-footer {
-    margin-top: 10px;
-    border-top: 2.5px solid #000000;
-    padding-top: 6px;
+    margin-top: 12px;
+    border-top: 1px solid #1d1d1f;
+    padding-top: 8px;
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  .print-sign-box {
-    font-size: 9.5pt;
+  .print-oath {
+    font-size: 9pt;
+    color: #515154;
   }
 
   .print-signatures {
     display: flex;
     justify-content: space-between;
-    font-weight: 800;
-    margin-top: 6px;
-    padding: 0 8px;
+    font-weight: 600;
+    margin-top: 8px;
+    padding: 0 4px;
+    font-size: 9.5pt;
   }
 }
 
 /* ==========================================================================
-   반응형 스타일
+   반응형 모바일
    ========================================================================== */
 @media (max-width: 768px) {
-  .app-header {
+  .apple-navbar {
     flex-direction: column;
     align-items: stretch;
-    text-align: center;
   }
 
-  .header-left {
+  .nav-left {
+    justify-content: space-between;
+  }
+
+  .nav-right {
     justify-content: center;
   }
 
-  .header-right {
-    justify-content: center;
+  .apple-hero-card {
+    padding: 20px 18px;
   }
 
-  .dashboard-panel {
-    padding: 20px 16px;
-  }
-
-  .btn-hero-action {
-    font-size: 1.2rem;
-    padding: 14px 28px;
+  .btn-apple-large {
     width: 100%;
+    font-size: 1.05rem;
   }
 
-  .cards-grid {
+  .apple-cards-grid {
     grid-template-columns: 1fr;
   }
 
-  .filter-bar {
+  .apple-search-section {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .search-box {
+  .apple-search-field {
     max-width: 100%;
   }
 }

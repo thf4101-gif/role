@@ -3,117 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>마블 히어로 학급 1인 1역할 배정 도우미</title>
-  <meta name="description" content="어벤져스 마블 히어로 스타일의 초등학교 학급 1인 1역할 랜덤 배정 및 A4 게시판 인쇄 웹 애플리케이션" />
-  <!-- Google Fonts: Marvel-style punchy impact fonts & clean Korean fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+  <title>학급 1인 1역할 배정</title>
+  <meta name="description" content="Apple 감성의 미니멀하고 세련된 초등학교 학급 1인 1역할 배정 및 A4 인쇄 웹 애플리케이션" />
+  <!-- Apple Font System & Pretendard -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="./style.css" />
 </head>
-<body class="marvel-theme">
-  <!-- 히어로 콘페티 캔버스 -->
+<body class="apple-theme">
+  <!-- 축하 콘페티 캔버스 -->
   <canvas id="confetti-canvas"></canvas>
 
-  <div class="comic-bg-overlay"></div>
+  <div class="apple-background-glow"></div>
 
   <div class="app-container">
-    <!-- 마블 스타일 상단 헤더 & 작전 본부 네비게이션 (화면 전용) -->
-    <header class="app-header no-print">
-      <div class="header-left">
-        <div class="marvel-logo-box">
-          <span class="marvel-logo-text">MARVEL</span>
-          <span class="sub-hero-tag">CLASS HEROES</span>
+    <!-- Apple 스타일 상단 네비게이션 바 (화면 전용) -->
+    <header class="apple-navbar no-print">
+      <div class="nav-left">
+        <div class="apple-brand">
+          <svg class="apple-icon" viewBox="0 0 170 170" width="18" height="18" fill="currentColor">
+            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.04-7.67-7.81-11.94-14.33-7.7-11.75-13.3-24.81-16.8-39.18-3.5-14.37-5.25-28.05-5.25-41.04 0-14.89 3.73-27.42 11.19-37.59 7.46-10.17 17.1-15.34 28.91-15.51 5.33 0 11.08 1.41 17.26 4.22 6.18 2.81 10.37 4.28 12.57 4.41 1.74-.24 6.12-1.74 13.14-4.5 7.02-2.76 13.06-3.95 18.12-3.57 13.54.89 24.31 5.92 32.32 15.1-11.85 7.18-17.67 17.18-17.47 30 0 11.2 4.22 20.67 12.66 28.41 8.44 7.74 18.49 12.22 30.15 13.44-2.39 7.61-5.61 15.33-9.67 23.16zM119.22 31.84c0-7.39 2.72-14.42 8.16-21.09 5.44-6.67 12.18-10.42 20.22-11.25.11 1.09.16 2.07.16 2.94 0 7.39-2.82 14.53-8.46 21.42-5.64 6.89-12.44 10.74-20.4 11.55-.22-1.2-.33-2.2-.33-3.02z" />
+          </svg>
+          <span class="brand-divider">/</span>
+          <span class="brand-title">Classroom Roles</span>
         </div>
-        <div class="title-wrap">
-          <h1 class="main-title">학급 1인 1역할 본부 <span class="comic-bang">ASSEMBLE!</span></h1>
-          <p class="header-subtitle">지구를 지키는 어벤져스처럼, 우리 반을 빛내는 1인 1히어로 출동!</p>
+        <div class="nav-title-group">
+          <h1 class="main-title">학급 1인 1역할</h1>
+          <span class="ios-badge">Ver 3.0</span>
         </div>
       </div>
 
-      <div class="header-right">
+      <div class="nav-right">
         <!-- 구글 스프레드시트 연동 버튼 자리 -->
-        <button id="btn-sheet-load" class="btn btn-marvel-secondary" title="구글 스프레드시트에서 요원 명단 및 미션 불러오기">
-          <span class="btn-icon">🔄</span> 시트 불러오기
+        <button id="btn-sheet-load" class="apple-btn apple-btn-secondary" title="스프레드시트에서 학생 및 역할 데이터 불러오기">
+          <span class="btn-icon">􀅈</span> 시트 불러오기
         </button>
-        <button id="btn-sheet-save" class="btn btn-marvel-secondary" title="배정된 작전 결과를 구글 스프레드시트에 저장">
-          <span class="btn-icon">💾</span> 시트에 결과 저장
+        <button id="btn-sheet-save" class="apple-btn apple-btn-secondary" title="배정 결과를 스프레드시트에 저장하기">
+          <span class="btn-icon">􀈏</span> 결과 저장
         </button>
-        <button id="btn-sheet-config" class="btn btn-comic-icon" title="스프레드시트 본부 연동 설정">
-          ⚙️
+        <button id="btn-sheet-config" class="apple-btn apple-btn-icon" title="스프레드시트 연동 환경설정">
+          􀍟
         </button>
-        <button id="btn-print-open" class="btn btn-marvel-accent" title="교실 게시판 부착용 A4 인쇄">
-          <span class="btn-icon">🖨️</span> A4 작전판 인쇄
+        <button id="btn-print-open" class="apple-btn apple-btn-tinted" title="교실 게시판 부착용 A4 인쇄">
+          <span class="btn-icon">􀎞</span> 게시판 인쇄
         </button>
       </div>
     </header>
 
-    <!-- 인쇄 전용 헤더 (A4 출력 시 교실 게시판 최적화) -->
+    <!-- 인쇄 전용 헤더 (A4 출력 시 교실 게시판 부착용) -->
     <div class="print-header print-only">
       <div class="print-title-area">
-        <div class="print-marvel-badge">MARVEL CLASSROOM AGENTS</div>
-        <h1 id="print-view-title">⚡ 우리 반 어벤져스 1인 1역할 작전 배치도 ⚡</h1>
+        <div class="print-apple-badge">CLASSROOM RESPONSIBILITY SYSTEM</div>
+        <h1 id="print-view-title">우리 반 1인 1역할 안내표</h1>
         <div class="print-meta-info">
           <span id="print-view-class">3학년 2반</span>
-          <span class="print-divider">★</span>
-          <span id="print-view-date">2026학년도 히어로 작전</span>
-          <span class="print-divider">★</span>
-          <span id="print-view-slogan">"책임감과 용기로 함께 만드는 최고의 우리 교실!"</span>
+          <span class="print-divider">&bull;</span>
+          <span id="print-view-date">2026학년도 1학기</span>
+          <span class="print-divider">&bull;</span>
+          <span id="print-view-slogan">"책임감을 가지고 서로 도우며 함께 성장하는 교실"</span>
         </div>
       </div>
     </div>
 
-    <!-- 대시보드 컨트롤 패널: 마블 지휘 통제소 (화면 전용) -->
-    <section class="dashboard-panel no-print">
-      <div class="panel-header-row">
-        <div class="status-chips">
-          <div class="chip chip-student" id="chip-students-count">
-            <span class="chip-icon">🦸‍♂️</span>
-            <span>학급 요원: <strong id="student-count-num">12</strong>명</span>
-          </div>
-          <div class="chip chip-role" id="chip-roles-count">
-            <span class="chip-icon">⚡</span>
-            <span>히어로 임무: <strong id="role-count-num">12</strong>개</span>
-          </div>
-          <div class="chip chip-status" id="chip-match-status">
-            <span class="status-dot"></span>
-            <span id="status-text">출동 준비 완료</span>
+    <!-- 대시보드 컨트롤 패널: Apple 미니멀 카드 (화면 전용) -->
+    <section class="apple-hero-card no-print">
+      <div class="hero-top-row">
+        <div class="hero-meta">
+          <div class="segmented-status">
+            <div class="status-segment">
+              <span class="segment-label">학생</span>
+              <strong class="segment-value" id="student-count-num">12</strong>
+            </div>
+            <div class="status-divider"></div>
+            <div class="status-segment">
+              <span class="segment-label">역할</span>
+              <strong class="segment-value" id="role-count-num">12</strong>
+            </div>
+            <div class="status-divider"></div>
+            <div class="status-segment status-indicator" id="chip-match-status">
+              <span class="apple-dot"></span>
+              <span class="status-text" id="status-text">배정 준비 완료</span>
+            </div>
           </div>
         </div>
 
-        <div class="comic-sticker">POWER UP!</div>
+        <div class="hero-subtext">
+          <span>모두를 위한 공정하고 산뜻한 학급 역할 매칭</span>
+        </div>
       </div>
 
-      <!-- 메인 출동 액션: 역할 배정하기 (어벤져스 스타일) -->
-      <div class="panel-actions">
-        <button id="btn-assign" class="btn btn-hero-action">
-          <span class="btn-icon-dice" id="dice-icon">⚡</span>
-          <span class="btn-text">역할 배정하기 (ASSEMBLE!)</span>
-          <span class="hero-glow"></span>
+      <!-- 메인 Call to Action: 역할 배정하기 -->
+      <div class="hero-action-center">
+        <button id="btn-assign" class="apple-btn apple-btn-primary btn-apple-large">
+          <span class="btn-icon-dice" id="dice-icon">🎲</span>
+          <span class="btn-text">역할 배정하기</span>
         </button>
 
-        <div class="sub-actions">
-          <button id="btn-manage" class="btn btn-comic-outline" title="학생 요원 명단과 역할을 수정합니다">
-            <span class="btn-icon">🛡️</span> 요원·임무 관리
+        <div class="hero-sub-actions">
+          <button id="btn-manage" class="apple-btn apple-btn-tertiary">
+            <span>􀈏</span> 명단 &middot; 역할 편집
           </button>
-          <button id="btn-copy-result" class="btn btn-comic-outline" title="배정 결과를 텍스트로 복사하여 알림장에 공유합니다">
-            <span class="btn-icon">📋</span> 작전명령 복사
+          <button id="btn-copy-result" class="apple-btn apple-btn-tertiary">
+            <span>􀉁</span> 결과 텍스트 복사
           </button>
-          <button id="btn-reset-default" class="btn btn-comic-danger" title="기본 12명 마블 히어로 예시 데이터로 초기화합니다">
-            <span class="btn-icon">🔄</span> 기본값 복원
+          <button id="btn-reset-default" class="apple-btn apple-btn-destructive-text">
+            기본값 초기화
           </button>
         </div>
       </div>
 
-      <!-- 검색 및 필터 바 -->
-      <div class="filter-bar">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="input-search" placeholder="히어로 이름이나 역할을 검색하세요 (예: 토르, 김하은)..." />
-          <button id="btn-clear-search" class="btn-clear-text" style="display: none;">✕</button>
+      <!-- 실시간 검색 및 필터 바 -->
+      <div class="apple-search-section">
+        <div class="apple-search-field">
+          <span class="search-symbol">􀊫</span>
+          <input type="text" id="input-search" placeholder="학생 이름 또는 역할 검색..." />
+          <button id="btn-clear-search" class="btn-clear-symbol" style="display: none;">􀁡</button>
         </div>
-        <div class="quick-stats" id="assignment-summary">
-          총 <span id="assigned-count">0</span>명 작전 배치 완료
+        <div class="apple-counter" id="assignment-summary">
+          <span id="assigned-count">0</span> / <span id="total-count-display">12</span>명 매칭됨
         </div>
       </div>
     </section>
@@ -121,151 +128,143 @@
     <!-- 역할 배정 결과 카드 그리드 영역 -->
     <main class="results-container">
       <!-- 빈 상태 안내 (배정 전) -->
-      <div id="empty-state" class="empty-state no-print">
-        <div class="empty-illustration">🛡️⚡💥</div>
-        <h3>아직 배정된 히어로 임무가 없습니다!</h3>
-        <p>상단의 <strong>[⚡ 역할 배정하기 (ASSEMBLE!)]</strong> 버튼을 누르면<br>우리 반 12명의 요원들에게 마블 슈퍼 히어로 미션이 1:1로 랜덤 매칭됩니다.</p>
-        <button class="btn btn-marvel-primary btn-sm" onclick="document.getElementById('btn-assign').click()">
-          🚀 지금 작전 출동하기!
+      <div id="empty-state" class="apple-empty-state no-print">
+        <div class="empty-icon-well">
+          <span class="empty-symbol">􀌈</span>
+        </div>
+        <h3>아직 배정된 역할이 없습니다</h3>
+        <p><strong>역할 배정하기</strong> 버튼을 누르면 12명의 학생과 12개의 학급 역할이<br>알고리즘을 통해 1:1로 공정하게 무작위 매칭됩니다.</p>
+        <button class="apple-btn apple-btn-primary apple-btn-sm" onclick="document.getElementById('btn-assign').click()">
+          지금 배정 시작하기
         </button>
       </div>
 
-      <!-- 배정 셔플 중 로딩 애니메이션 (마블 카운트다운) -->
-      <div id="shuffling-state" class="shuffling-state no-print" style="display: none;">
-        <div class="comic-spin-badge">
-          <span class="comic-sound-fx">BOOM!</span>
-        </div>
-        <div class="spinner-roller">
-          <span class="roller-item">🛡️</span>
-          <span class="roller-item">⚡</span>
-          <span class="roller-item">🤖</span>
-          <span class="roller-item">🕸️</span>
-          <span class="roller-item">💥</span>
-          <span class="roller-item">🌱</span>
-        </div>
-        <h3>히어로 코어 동기화 중... 두구두구!</h3>
-        <p>공정하고 강력한 마블 히어로 임무를 무작위로 매칭하고 있습니다.</p>
+      <!-- 셔플 중 로딩 애니메이션 (Apple 미니멀 인디케이터) -->
+      <div id="shuffling-state" class="apple-loading-state no-print" style="display: none;">
+        <div class="apple-spinner-ring"></div>
+        <h3>역할을 무작위로 매칭하는 중입니다...</h3>
+        <p>공정하고 균형 잡힌 1인 1역할을 설정하고 있습니다.</p>
       </div>
 
-      <!-- 실제 결과 카드 그리드 (마블 코믹스 카드 스타일) -->
-      <div id="cards-grid" class="cards-grid" style="display: none;">
+      <!-- 실제 결과 카드 그리드 (Apple Card 디자인) -->
+      <div id="cards-grid" class="apple-cards-grid" style="display: none;">
         <!-- JS에서 동적으로 생성됩니다 -->
       </div>
     </main>
 
-    <!-- 인쇄 전용 푸터 (A4 하단 작전 서명란) -->
+    <!-- 인쇄 전용 푸터 (A4 하단 확인란) -->
     <footer class="print-footer print-only">
       <div class="print-sign-box">
-        <p>⭐ <strong>우리 반 히어로 맹세:</strong> 나는 학급의 영웅으로서 나의 1인 1임무를 성실히 수행하고 친구들과 힘을 합치겠습니다!</p>
+        <p class="print-oath">🌿 <strong>학급 실천 다짐:</strong> 우리는 각자 맡은 역할을 성실히 수행하여 모두가 행복한 교실을 만들어 가겠습니다.</p>
         <div class="print-signatures">
-          <span>총지휘관(담임교사) 확인: __________________ (인)</span>
-          <span>작전 발령일: 2026년 _____월 _____일</span>
+          <span>담임교사 서명: ________________________ (인)</span>
+          <span>배정 일자: 2026년 ______월 ______일</span>
         </div>
       </div>
     </footer>
 
     <!-- 하단 푸터 (화면 전용) -->
-    <footer class="app-footer no-print">
-      <p>💥 <strong>MARVEL CLASS HEROES:</strong> 1인 1역할 배정 후 <strong>[🖨️ A4 작전판 인쇄]</strong>를 클릭하면 교실 뒤편 게시판용 멋진 히어로 포스터로 출력됩니다.</p>
-      <p class="copyright">MARVEL CLASSROOM ALLIANCE &bull; GitHub Pages Static Ready</p>
+    <footer class="apple-footer no-print">
+      <p>교실 게시판 인쇄 시 <strong>게시판 인쇄</strong> 버튼을 사용하면 A4 한 장에 맞춤 최적화된 서식으로 깔끔하게 출력됩니다.</p>
+      <p class="copyright">&copy; 2026 Classroom Roles. Designed in Apple Style. Static Web App.</p>
     </footer>
   </div>
 
-  <!-- 모달 1: 요원 명단 및 임무 관리 모달 -->
+  <!-- 모달 1: 학생 명단 및 역할 관리 모달 (iOS Sheet 스타일) -->
   <div id="modal-manage" class="modal-backdrop" style="display: none;">
-    <div class="modal-card comic-modal">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
       <div class="modal-header">
         <div class="modal-title-group">
-          <span class="modal-emoji">🛡️</span>
-          <h2>히어로 요원 명단 및 임무 관리</h2>
+          <h2>명단 및 역할 편집</h2>
+          <p class="modal-subtitle">학생 명단과 학급 1인 1역할 항목을 자유롭게 추가하거나 수정합니다.</p>
         </div>
-        <button class="modal-close" id="btn-close-manage">&times;</button>
+        <button class="sheet-close-btn" id="btn-close-manage">􀁡</button>
       </div>
       
-      <!-- 탭 선택 -->
-      <div class="modal-tabs">
-        <button class="tab-btn active" id="tab-btn-students">🦸 요원 명단 (<span id="modal-student-count">12</span>)</button>
-        <button class="tab-btn" id="tab-btn-roles">⚡ 히어로 임무 (<span id="modal-role-count">12</span>)</button>
+      <!-- iOS 세그먼트 컨트롤 탭 -->
+      <div class="ios-segmented-control">
+        <button class="segment-tab active" id="tab-btn-students">학생 명단 (<span id="modal-student-count">12</span>)</button>
+        <button class="segment-tab" id="tab-btn-roles">학급 역할 (<span id="modal-role-count">12</span>)</button>
       </div>
 
       <div class="modal-body">
-        <!-- 탭 1: 학생 요원 명단 -->
+        <!-- 탭 1: 학생 명단 -->
         <div id="tab-content-students" class="tab-content active">
-          <div class="list-editor-controls">
-            <div class="input-inline">
-              <input type="text" id="new-student-name" placeholder="새 요원 이름 입력 (예: 이우주)" />
-              <button id="btn-add-student" class="btn btn-marvel-secondary btn-sm">+ 요원 등록</button>
-            </div>
-            <button id="btn-batch-students" class="btn btn-comic-outline btn-sm" title="여러 요원의 이름을 줄바꿈으로 한 번에 붙여넣기">
-              📋 일괄 명단 등록
+          <div class="sheet-input-row">
+            <input type="text" id="new-student-name" placeholder="새 학생 이름 입력 (예: 이우주)" class="apple-input" />
+            <button id="btn-add-student" class="apple-btn apple-btn-secondary apple-btn-sm">+ 추가</button>
+            <button id="btn-batch-students" class="apple-btn apple-btn-tertiary apple-btn-sm" title="여러 이름을 줄바꿈으로 한 번에 붙여넣기">
+              일괄 입력
             </button>
           </div>
 
-          <div class="items-list-container" id="students-list-view">
-            <!-- 요원 리스트 -->
+          <div class="apple-list-group" id="students-list-view">
+            <!-- 학생 목록 -->
           </div>
         </div>
 
-        <!-- 탭 2: 역할 임무 목록 -->
+        <!-- 탭 2: 역할 목록 -->
         <div id="tab-content-roles" class="tab-content">
-          <div class="list-editor-controls">
-            <div class="role-inputs-row">
-              <input type="text" id="new-role-icon" placeholder="심볼" class="input-icon-picker" value="⚡" maxlength="2" />
-              <input type="text" id="new-role-title" placeholder="임무명 (예: 토르 번개 지킴이)" class="input-role-title" />
-              <input type="text" id="new-role-desc" placeholder="임무 설명 (예: 교실 전자기기를 안전하게 지켜요)" class="input-role-desc" />
-              <button id="btn-add-role" class="btn btn-marvel-secondary btn-sm">+ 임무 추가</button>
-            </div>
-            <button id="btn-batch-roles" class="btn btn-comic-outline btn-sm" title="마블 추천 12개 히어로 임무 세트 불러오기">
-              ⭐ 마블 추천 임무 세트 복원
-            </button>
+          <div class="sheet-role-inputs">
+            <input type="text" id="new-role-icon" placeholder="아이콘" class="apple-input input-icon-box" value="✨" maxlength="2" />
+            <input type="text" id="new-role-title" placeholder="역할 이름 (예: 신발장 지우미)" class="apple-input input-role-name" />
+            <input type="text" id="new-role-desc" placeholder="역할 설명 (예: 신발장을 바르게 정돈해요)" class="apple-input input-role-desc" />
+            <button id="btn-add-role" class="apple-btn apple-btn-secondary apple-btn-sm">+ 추가</button>
           </div>
+          <button id="btn-batch-roles" class="apple-btn apple-btn-tertiary apple-btn-sm btn-full-sub" title="추천 12개 기본 역할 세트 불러오기">
+            추천 12개 역할 프리셋 불러오기
+          </button>
 
-          <div class="items-list-container" id="roles-list-view">
-            <!-- 역할 리스트 -->
+          <div class="apple-list-group" id="roles-list-view">
+            <!-- 역할 목록 -->
           </div>
         </div>
       </div>
 
       <div class="modal-footer">
         <div class="footer-left-info">
-          <span id="manage-balance-alert" class="balance-good">요원 수와 임무 수가 일치합니다 (12:12)</span>
+          <span id="manage-balance-alert" class="balance-good">학생 수와 역할 수가 일치합니다 (12:12)</span>
         </div>
-        <button id="btn-save-manage" class="btn btn-marvel-primary">확인 및 본부 복귀</button>
+        <button id="btn-save-manage" class="apple-btn apple-btn-primary apple-btn-sm">완료</button>
       </div>
     </div>
   </div>
 
   <!-- 모달 2: 구글 스프레드시트 (Apps Script) 연동 설정 -->
   <div id="modal-sheet-config" class="modal-backdrop" style="display: none;">
-    <div class="modal-card modal-large comic-modal">
+    <div class="modal-sheet sheet-large">
+      <div class="sheet-drag-handle"></div>
       <div class="modal-header">
         <div class="modal-title-group">
-          <span class="modal-emoji">🌐</span>
-          <h2>구글 스프레드시트 본부(Apps Script) 연동</h2>
+          <h2>Google 스프레드시트 연동</h2>
+          <p class="modal-subtitle">Apps Script Web App URL을 통해 명단 동기화 및 결과를 클라우드에 자동 기록합니다.</p>
         </div>
-        <button class="modal-close" id="btn-close-sheet-config">&times;</button>
+        <button class="sheet-close-btn" id="btn-close-sheet-config">􀁡</button>
       </div>
 
       <div class="modal-body">
-        <div class="sheet-guide-banner">
-          <p>구글 스프레드시트의 <strong>확장 프로그램 &gt; Apps Script</strong>를 웹 앱(Web App)으로 배포한 URL을 입력하면 요원 명단 불러오기와 배정 결과 저장을 실시간으로 자동화할 수 있습니다.</p>
+        <div class="apple-callout-box">
+          <div class="callout-icon">􀅴</div>
+          <div class="callout-text">
+            스프레드시트의 <strong>확장 프로그램 &gt; Apps Script</strong>를 웹 앱으로 배포한 URL을 등록하세요. '액세스 권한: 모든 사용자(Anyone)'로 설정해야 웹 앱에서 직접 접근할 수 있습니다.
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="input-sheet-url"><strong>구글 Apps Script 웹 앱 URL (Web App URL):</strong></label>
-          <input type="url" id="input-sheet-url" placeholder="https://script.google.com/macros/s/.../exec" class="input-text-full" />
-          <small class="helper-text">※ 배포 설정: '액세스 권한: 모든 사용자(Anyone)'로 배포해야 웹 앱에서 즉시 접근 가능합니다.</small>
+        <div class="apple-form-group">
+          <label for="input-sheet-url">Apps Script 웹 앱 URL:</label>
+          <input type="url" id="input-sheet-url" placeholder="https://script.google.com/macros/s/.../exec" class="apple-input input-full" />
         </div>
 
-        <div class="connection-status-box" id="sheet-status-box">
-          <span class="status-indicator-dot" id="sheet-status-dot"></span>
-          <span id="sheet-status-text">현재 상태: 설정된 URL 없음 (브라우저 로컬 저장소 모드로 작동 중)</span>
+        <div class="apple-status-pill-box" id="sheet-status-box">
+          <span class="apple-dot" id="sheet-status-dot"></span>
+          <span id="sheet-status-text">현재 상태: 설정된 URL 없음 (브라우저 로컬 저장소 모드)</span>
         </div>
 
-        <div class="sheet-code-accordion">
+        <div class="apple-accordion">
           <details>
-            <summary><strong>📋 Apps Script 예제 코드 보기 (스프레드시트에 복사해 넣기)</strong></summary>
-            <div class="code-box-wrapper">
+            <summary>Apps Script 연동 소스 코드 보기</summary>
+            <div class="code-wrapper">
               <pre><code id="apps-script-code">function doGet(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var data = sheet.getDataRange().getValues();
@@ -275,7 +274,7 @@
     if (data[i][0]) students.push(data[i][0]);
     if (data[i][1]) roles.push({
       title: data[i][1],
-      icon: data[i][2] || '⭐',
+      icon: data[i][2] || '✨',
       desc: data[i][3] || ''
     });
   }
@@ -289,9 +288,9 @@
 function doPost(e) {
   var params = JSON.parse(e.postData.contents);
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName("히어로배정결과") || ss.insertSheet("히어로배정결과");
+  var sheet = ss.getSheetByName("역할배정결과") || ss.insertSheet("역할배정결과");
   sheet.clear();
-  sheet.appendRow(["번호", "히어로 요원", "임무명", "임무 설명", "작전배정일시"]);
+  sheet.appendRow(["번호", "학생 이름", "역할 이름", "역할 설명", "배정일시"]);
   var list = params.assignments || [];
   for (var i = 0; i &lt; list.length; i++) {
     sheet.appendRow([i + 1, list[i].studentName, list[i].roleTitle, list[i].roleDesc, new Date()]);
@@ -301,92 +300,93 @@ function doPost(e) {
     message: "성공적으로 저장되었습니다."
   })).setMimeType(ContentService.MimeType.JSON);
 }</code></pre>
-              <button id="btn-copy-code" class="btn btn-comic-outline btn-xs">코드 복사하기</button>
+              <button id="btn-copy-code" class="apple-btn apple-btn-secondary apple-btn-xs">코드 복사</button>
             </div>
           </details>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button id="btn-test-sheet-conn" class="btn btn-comic-outline">연결 테스트</button>
-        <button id="btn-save-sheet-url" class="btn btn-marvel-primary">URL 저장하기</button>
+        <button id="btn-test-sheet-conn" class="apple-btn apple-btn-secondary apple-btn-sm">연결 테스트</button>
+        <button id="btn-save-sheet-url" class="apple-btn apple-btn-primary apple-btn-sm">저장</button>
       </div>
     </div>
   </div>
 
-  <!-- 모달 3: 일괄 입력 모달 (학생 요원 명단) -->
+  <!-- 모달 3: 일괄 입력 모달 (학생 명단) -->
   <div id="modal-batch" class="modal-backdrop" style="display: none;">
-    <div class="modal-card comic-modal">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
       <div class="modal-header">
         <div class="modal-title-group">
-          <span class="modal-emoji">📋</span>
-          <h2>요원 명단 일괄 입력</h2>
+          <h2>명단 일괄 입력</h2>
+          <p class="modal-subtitle">학생 이름을 한 줄에 한 명씩 입력하거나 엑셀에서 복사해 붙여넣으세요.</p>
         </div>
-        <button class="modal-close" id="btn-close-batch">&times;</button>
+        <button class="sheet-close-btn" id="btn-close-batch">􀁡</button>
       </div>
       <div class="modal-body">
-        <p class="guide-text">요원 이름을 한 줄에 한 명씩 입력하거나 엑셀/한글 명단에서 복사해 붙여넣으세요.</p>
-        <textarea id="textarea-batch-students" rows="8" class="textarea-full" placeholder="김하은&#10;이도현&#10;박서윤&#10;최민준&#10;..."></textarea>
+        <textarea id="textarea-batch-students" rows="8" class="apple-textarea" placeholder="김하은&#10;이도현&#10;박서윤&#10;최민준&#10;..."></textarea>
       </div>
       <div class="modal-footer">
-        <button id="btn-cancel-batch" class="btn btn-comic-outline">취소</button>
-        <button id="btn-apply-batch" class="btn btn-marvel-primary">명단 적용하기</button>
+        <button id="btn-cancel-batch" class="apple-btn apple-btn-secondary apple-btn-sm">취소</button>
+        <button id="btn-apply-batch" class="apple-btn apple-btn-primary apple-btn-sm">적용</button>
       </div>
     </div>
   </div>
 
-  <!-- 모달 4: A4 작전판 인쇄 설정 모달 -->
+  <!-- 모달 4: A4 인쇄 설정 모달 -->
   <div id="modal-print-setup" class="modal-backdrop" style="display: none;">
-    <div class="modal-card comic-modal">
+    <div class="modal-sheet">
+      <div class="sheet-drag-handle"></div>
       <div class="modal-header">
         <div class="modal-title-group">
-          <span class="modal-emoji">🖨️</span>
-          <h2>교실 게시판용 A4 작전판 인쇄 설정</h2>
+          <h2>게시판 A4 인쇄 설정</h2>
+          <p class="modal-subtitle">교실 게시판에 부착할 인쇄 서식의 메타 정보와 레이아웃을 설정합니다.</p>
         </div>
-        <button class="modal-close" id="btn-close-print-setup">&times;</button>
+        <button class="sheet-close-btn" id="btn-close-print-setup">􀁡</button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label for="input-print-title">게시판 헤드라인 제목:</label>
-          <input type="text" id="input-print-title" value="⚡ 우리 반 어벤져스 1인 1역할 작전 배치도 ⚡" class="input-text-full" />
+        <div class="apple-form-group">
+          <label for="input-print-title">안내표 제목:</label>
+          <input type="text" id="input-print-title" value="우리 반 1인 1역할 안내표" class="apple-input input-full" />
         </div>
-        <div class="form-row">
-          <div class="form-group half">
-            <label for="input-print-class">학급 요원단 (학년 반):</label>
-            <input type="text" id="input-print-class" value="3학년 2반" class="input-text-full" />
+        <div class="form-row-2">
+          <div class="apple-form-group">
+            <label for="input-print-class">학급명:</label>
+            <input type="text" id="input-print-class" value="3학년 2반" class="apple-input input-full" />
           </div>
-          <div class="form-group half">
-            <label for="input-print-date">작전 기간/일자:</label>
-            <input type="text" id="input-print-date" value="2026학년도 1학기" class="input-text-full" />
+          <div class="apple-form-group">
+            <label for="input-print-date">적용 기간:</label>
+            <input type="text" id="input-print-date" value="2026학년도 1학기" class="apple-input input-full" />
           </div>
         </div>
-        <div class="form-group">
-          <label for="input-print-slogan">히어로 슬로건 / 급훈:</label>
-          <input type="text" id="input-print-slogan" value='"책임감과 용기로 함께 만드는 최고의 우리 교실!"' class="input-text-full" />
+        <div class="apple-form-group">
+          <label for="input-print-slogan">학급 슬로건 / 급훈:</label>
+          <input type="text" id="input-print-slogan" value='"책임감을 가지고 서로 도우며 함께 성장하는 교실"' class="apple-input input-full" />
         </div>
-        <div class="form-group">
-          <label>인쇄 레이아웃 옵션:</label>
-          <div class="radio-options">
-            <label class="radio-label">
-              <input type="radio" name="print-layout" value="card" checked /> 히어로 카드 그리드형 (A4 1장 부착 추천)
+        <div class="apple-form-group">
+          <label>레이아웃 형식:</label>
+          <div class="apple-segmented-pick">
+            <label class="pick-label">
+              <input type="radio" name="print-layout" value="card" checked />
+              <span>미니멀 카드형 (3&times;4)</span>
             </label>
-            <label class="radio-label">
-              <input type="radio" name="print-layout" value="table" /> 클래식 작전표형 (표 형식)
+            <label class="pick-label">
+              <input type="radio" name="print-layout" value="table" />
+              <span>단정한 표형식 (Table)</span>
             </label>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button id="btn-cancel-print-setup" class="btn btn-comic-outline">닫기</button>
-        <button id="btn-execute-print" class="btn btn-marvel-primary">
-          <span class="btn-icon">🖨️</span> 지금 바로 인쇄하기
-        </button>
+        <button id="btn-cancel-print-setup" class="apple-btn apple-btn-secondary apple-btn-sm">취소</button>
+        <button id="btn-execute-print" class="apple-btn apple-btn-primary apple-btn-sm">인쇄 시작</button>
       </div>
     </div>
   </div>
 
-  <!-- 알림 토스트 메시지 -->
-  <div id="toast-message" class="toast-message" style="display: none;"></div>
+  <!-- 알림 토스트 (iOS Dynamic Island 스타일) -->
+  <div id="toast-message" class="apple-toast" style="display: none;"></div>
 
   <!-- 동작 스크립트 연결 -->
   <script src="./script.js"></script>
